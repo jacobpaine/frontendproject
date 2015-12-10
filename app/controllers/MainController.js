@@ -10,9 +10,17 @@ app.controller("MainController",
 
 
 app.controller("CommonController",
-  ["$q", "$scope", "$firebaseAuth",
-  function($Q, $scope, $firebaseAuth) {
+  ["$q", "$scope", "$firebaseAuth", "Auth", "$location",
+  function($Q, $scope, $firebaseAuth, Auth, $location) {
 
+  $scope.logOut = function() {
+  	console.log("I click!");
+    Auth.useAuth().$unauth();
+    $scope.authData = null;
+    $scope.user={};
+    console.log("No longer logged in?");
+    $location.path('/login').replace();
+  };
 
 
 }]);
@@ -91,5 +99,6 @@ app.controller("loginControl",
       console.log("Error in the addRef:", error);
       });
   };
+
 
 }]);
