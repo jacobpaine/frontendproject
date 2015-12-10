@@ -2,7 +2,7 @@
 // It's a factory! Inside the factory are all the tools we want to call in other places. This one uses Firebase information, e.g. $firebaseAuth.  
 
 app.factory("Auth", 
-	["$firebaseAuth", function($firebaseAuth) {
+	["$firebaseAuth", "$rootScope", function($firebaseAuth, $rootScope) {
 		var ref = new Firebase("https://front-end-data.firebaseio.com");
     var uid;
 
@@ -16,10 +16,10 @@ app.factory("Auth",
 		useAuth: function() {
     return $firebaseAuth(ref);
   	},
-  // 	logUs: function(inorOut){
-  // 		$rootScope.loggedIn = inorOut;
-  // 		console.log("inorOut", inorOut);
-  // 	},
+  	logUs: function(inorOut){
+  		$rootScope.loggedIn = inorOut;
+  		console.log("inorOut", inorOut);
+  	},
   	isLoggedIn: function(){
   		return $rootScope.loggedIn;
   	}

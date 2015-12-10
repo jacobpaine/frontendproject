@@ -1,47 +1,29 @@
-
+//The Main Controller, doesn't do anything yet.
 
 app.controller("MainController",
   ["$q", "$scope", "$firebaseAuth",
   function($Q, $scope, $firebaseAuth) {
 
 
-
 }]);
 
 
-app.controller("CommonController",
-  ["$q", "$scope", "$firebaseAuth", "Auth", "$location",
-  function($Q, $scope, $firebaseAuth, Auth, $location) {
-
-  $scope.logOut = function() {
-  	console.log("I click!");
-    Auth.useAuth().$unauth();
-    $scope.authData = null;
-    $scope.user={};
-    console.log("No longer logged in?");
-    $location.path('/login').replace();
-  };
-
-
-}]);
-
-
+//Power overwhelming!
 app.controller("loginControl",
 	["$scope", "$firebaseAuth", "$firebaseArray", "Auth", "$firebaseObject", "$location", "$rootScope", 
 	 function($scope, $firebaseAuth, $firebaseArray, Auth, $firebaseObject, $location, $rootScope) {
 
   //Create an object to put the users in.
 	$scope.user={};
-    //Oh, look! It's a function in its natural habitat on scope! When we call signUp this happens.
+    //Oh, look! It's a function in its natural habitat on scope! When we call signUp (like from an ng-click event) this happens.
  	   $scope.signUp = function() {
-        console.log("sign Up starts");
         //A message on scope, functioning like console.log
         $scope.message = null;
         $scope.error = null;
 
-        // Running Auth.logUs for reasons only Mat may divine. This is a good point in the code to go take a look at Auth. Then come back, don't worry, we'll still be here.
+        // logUs, a nice little trick I've stolen from Ostrander. This allows for us to know if we're logged in or out. Useful for logout confirmation. This is a good point in the code to go take a look at Auth. Then come back, don't worry, we'll still be here.
 
-        // Auth.logUs(true);
+        Auth.logUs(true);
 
       //Using useAuth (from Auth.js), which uses AngularFire's $createUser method(?), we set those preset values to specific scopes. (See https://www.firebase.com/docs/web/libraries/angular/api.html - $createUser() for more.)
 
@@ -55,10 +37,12 @@ app.controller("loginControl",
         Auth.setUid(userData.uid);
 
 
+        //Here is where we auto-populate information into the Firebase when someone signs up. 
         var addRef = new Firebase("https://front-end-data.firebaseio.com/users/" + userData.uid);
         var addRefArray = $firebaseArray(addRef)
         addRefArray.$loaded()
           .then(function() {
+          	//Want to add some more/different things on sign up? Here's where you want to be.
             addRefArray.$add({obj:1});
 
             console.log("HELLO?", $scope.message);
@@ -71,7 +55,7 @@ app.controller("loginControl",
             $scope.error = error;
           });
 
-        //And if there's a hiccup we use catch to scope an error.
+        //Problems? Hiccups? We use catch to scope an error.
       }).catch(function(error) {
         $scope.error = error;
       });
@@ -87,7 +71,7 @@ app.controller("loginControl",
         password: $scope.user.password
       }).then(function(userData) {
         $scope.message = "User logged in with uid: " + userData.uid;
-        // Auth.logUs(true);
+        Auth.logUs(true);
         Auth.setUid(userData.uid);
       })
       .then(function() {
@@ -102,3 +86,23 @@ app.controller("loginControl",
 
 
 }]);
+
+  // This code allow for the direct addition of Objects and keys without Arrays. May be useful for editing later. Currently pointless.
+        // var obj = $firebaseObject(addRef);
+        // obj.$loaded()
+        // obj.$bindTo($scope, "widget").then(function() {
+        //   console.log("obj", obj);
+        //   $scope.widget.schmow = true;
+        // obj.$save().then(function(addRef) {
+        //   addRef.key() === obj.$id; // true
+        // }, function(error) {
+        //   console.log("Error:", error);
+        // })
+
+
+      // }) 
+      // .catch(function(error) {
+      // console.log("Error in the addRef:", error);
+      // });
+
+
