@@ -58,15 +58,25 @@ app.controller("CommonController",
     //     $scope.pins = [newArray];
     // });
    
-    //This is the addShow tool. It just adds shows to the common.html 
+    //This is the addShow tool. It just adds shows to Firebase.
+	$scope.shows = [];
 	$scope.addShow = function (singleShow) {
-	    console.log("stuff", this.stuff);
-	    var ShowRef = new Firebase("https://front-end-data.firebaseio.com/shows/" + Auth.getUid() + "/");
+	    var ShowRef = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title + "/");
+	   	var ImageFile = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title +"/img/");
+	    var CommentFile = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title + "/comments/");
+	 
 	    ShowRef = $firebaseArray(ShowRef);
+	   	ImageFile = $firebaseArray(ImageFile);
+	   	CommentFile = $firebaseArray(CommentFile);
 
-	      
-	    console.log("ShowRef", ShowRef);
-	    ShowRef.$add(singleShow);
+		ShowRef.$add($scope.show.title);
+	    ImageFile.$add($scope.show.imgUrl);
+	   	CommentFile.$add($scope.show.comments);
+
+	   	$scope.show.title = "";
+	   	$scope.show.imgUrl = "";
+	   	$scope.show.comments = "";
+
 	};
 
 
