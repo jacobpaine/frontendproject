@@ -1,46 +1,40 @@
  <div id="commonContent">
-
-			<div ng-repeat="show in allShows">
-
-				<div class="showImg">
-					<img src="{{show.img}}">
-				</div>
-
-				<div class="comments">
-					<p>{{show.comments}}</p>
-				</div>
-
-				<div class="numberOfReflections">
-					<p>{{show.reflections}}</p>
-				</div>
-				<button class="btn">View</button>
-				<button class="btn">Edit</button>
-				<hr>
+		<div>
+			    <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
+		</div>
+		<div ng-repeat="show in allShows">
+			<div class="showTitle">
+				<p>{{show.$id}}</p>
+				<img src="{{show.img}}">
+				<p>{{show.comments}}</p>
+				
 			</div>
-			<div>
-				I AM THE COMMON PAGE! LOOK UPON MY WORK, YE MIGHTY AND DESPAIR!!!!
-			<!-- Generate ShowID button -->
-
-				  <label>
-				    <div class="labels">
-				    	Add a show
-				    </div>
-				    <div>
-				    <p>Title</p>
-				      <input type="text" ng-model="show.title">
-				    </div>
-				    <div>
-				    <p>imgURL</p>
-				      <input type="text" ng-model="show.imgUrl">
-				    </div>
-				    <div>
-				    <p>Comments</p>
-				      <input type="textarea" ng-model="show.comments">
-				    </div>
-				  </label>
-
-			</div>
-			<div>
-				    <button class="btn btn-primary" type="button" ng-click="addShow()">OK</button>
-			</div>
+			<button class="btn">View</button>
+			<button class="btn">Edit</button>
+			<hr>
+		</div>
+		<div>
+			I AM THE COMMON PAGE! LOOK UPON MY WORK, YE MIGHTY AND DESPAIR!!!!
+		<!-- Generate ShowID button -->
+			  <label>
+			    <div class="labels">
+			    	Add a show
+			    </div>
+			    <div>
+			    <p>Title</p>
+			      <input type="text" ng-model="show.title">
+			    </div>
+			    <div>
+			    <p>imgURL</p>
+			      <input type="text" ng-model="show.imgUrl">
+			    </div>
+			    <div>
+			    <p>Comments</p>
+			      <input type="textarea" ng-model="show.comments">
+			    </div>
+			  </label>
+		</div>
+		<div>
+			    <button class="btn btn-primary" type="button" ng-click="addShow()">OK</button>
+		</div>
 </div> <!--Common content end-->

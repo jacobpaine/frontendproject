@@ -73,6 +73,7 @@ app.controller("CommonController",
 	    ImageFile.$add($scope.show.imgUrl);
 	   	CommentFile.$add($scope.show.comments);
 
+	   	//Clears the input boxes on add.
 	   	$scope.show.title = "";
 	   	$scope.show.imgUrl = "";
 	   	$scope.show.comments = "";
