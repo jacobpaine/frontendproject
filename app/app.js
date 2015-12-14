@@ -16,6 +16,10 @@ app.config(['$routeProvider',
         templateUrl: 'app/partials/view.html',
         controller: 'ViewController'
         })
+      .when('/edit', {
+        templateUrl: 'app/partials/edit.html',
+        controller: 'EditController'
+        })
       .otherwise('/login');
   }]);
 

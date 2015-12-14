@@ -11,17 +11,12 @@ app.controller("CommonController",
     $location.path('/login').replace();
   };
 
-// Back to Main Board
-  $scope.backToMain = function() {
-    $location.path('/common').replace();
-  };
-
 //All functionality for the Common Board
    var commonBoard = new Firebase("https://front-end-data.firebaseio.com/shows/");
 //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
 
     console.log("commonBoard", commonBoard);
-   var allShows = $firebaseArray(commonBoard);
+    var allShows = $firebaseArray(commonBoard);
     console.log("allShows", allShows);
     $scope.allShows = allShows;
 
@@ -115,6 +110,17 @@ app.controller("CommonController",
         currentShowArray.push(this.show);
         $location.path('/view').replace();
     }
+
+    $scope.editShow = function() {
+        currentShowArray = [];
+        console.log("Edit clicked");
+        currentShow = this.show;
+
+        currentShowArray.push(this.show);
+        $location.path('/edit').replace();
+    }
+
+
 
 }]);
 
