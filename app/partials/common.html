@@ -1,3 +1,4 @@
+
  <div id="commonContent">
 		<div>
 			    <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
@@ -7,10 +8,9 @@
 				<p>{{show.$id}}</p>
 				<img src="{{show.img}}">
 				<p>{{show.comments}}</p>
-				
 			</div>
-			<button class="btn">View</button>
-			<button class="btn">Edit</button>
+			<button class="btn" ng-click="viewShow()">View</button>
+			<button class="btn" ng-click="editShow()">Edit</button>
 			<hr>
 		</div>
 		<div>

@@ -12,6 +12,10 @@ app.config(['$routeProvider',
         templateUrl: 'app/partials/common.html',
         controller: 'CommonController'
         })
+      .when('/view', {
+        templateUrl: 'app/partials/view.html',
+        controller: 'ViewController'
+        })
       .otherwise('/login');
   }]);
 
