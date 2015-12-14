@@ -11,6 +11,11 @@ app.controller("CommonController",
     $location.path('/login').replace();
   };
 
+// Back to Main Board
+  $scope.backToMain = function() {
+    $location.path('/common').replace();
+  };
+
 //All functionality for the Common Board
    var commonBoard = new Firebase("https://front-end-data.firebaseio.com/shows/");
 //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.

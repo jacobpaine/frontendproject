@@ -11,36 +11,42 @@ app.controller("ViewController",
     $location.path('/login').replace();
   };
 
+// Back to Main Board
+  $scope.backToMain = function() {
+    $location.path('/common').replace();
+  };
+
+
     // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
     if ($rootScope.loggedIn !== true) {
       $location.path('/login').replace();
     }
 
+    console.log("currentShowArray", currentShowArray);
 
     for (var i in currentShowArray[0].comments){
-        console.log("value", currentShowArray[0].comments[i]);
+        $scope.comments = currentShowArray[0].comments[i]; 
+        console.log("currentShowArray[0].comments[i]", currentShowArray[0].comments[i]);  
+    }
+     for (var i in currentShowArray[0].reflections){
+        $scope.comments = currentShowArray[0].reflections[i];   
     }
 
-    $scope.comments = currentShowArray[0].comments;
+    for (var i in currentShowArray[0].img){
+        $scope.img = currentShowArray[0].img[i];   
+    }
 
-//     var currentShow = 
+    for (var i in currentShowArray[0].text){
+        $scope.text = currentShowArray[0].text[i];   
+    }
 
-//    var ShowSpecific = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow);
-// //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
-//    var ShowSpecificArray = $firebaseArray(ShowSpecific);
-//     console.log("ShowSpecificArray", ShowSpecificArray);
-//     $scope.ShowSpecificArray = ShowSpecificArray;
-
-
-//    var commonBoard = new Firebase("https://front-end-data.firebaseio.com/shows/");
-// //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
-//    var allShows = $firebaseArray(commonBoard);
-//     console.log("allShows", allShows);
-//     $scope.allShows = allShows;
-
-
-
-
+    for (var i in currentShowArray[0].$id){
+        $scope.id = currentShowArray[0].$id[i];   
+    }
+    
+    for (var i in currentShowArray[0].timer){
+        $scope.timer = currentShowArray[0].timer[i];   
+    }
 
 }]);
 
