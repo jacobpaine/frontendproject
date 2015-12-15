@@ -16,12 +16,33 @@ app.controller("EditController",
     $location.path('/common').replace();
   };
 
-  $scope.editImage1 = function() {
-      var ImageEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var imgEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
       var urlObject1 = {
         1: $scope.imgUrl1
       };
-      ImageEdit1.update(urlObject1);
+
+    var arr = $firebaseArray(imgEdit1)
+      arr.$loaded()
+      .then(function(res) {
+        $scope.imgUrl1 = res.$val
+      });
+
+  $scope.editImage1 = function() {
+
+
+
+      imgEdit1.update(urlObject1);
+      console.log("imgUrl1", $scope.imgUrl1);
+
+
+// var list = $firebaseArray(ref);
+// list[2].foo = "bar";
+// list.$save(2).then(function(ref) {
+//   ref.key() === list[2].$id; // true
+// });
+
+
+
       //Clears the input boxes on add.
       $scope.img1 = $scope.imgUrl1;
       $scope.imgUrl1 = "";
