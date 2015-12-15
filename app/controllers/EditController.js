@@ -16,19 +16,60 @@ app.controller("EditController",
     $location.path('/common').replace();
   };
 
-    console.log("currentShow", currentShow.$id);
-
-  $scope.editImage = function() {
-    console.log("currentShow2", currentShow.$id);  
-
-      var ImageEdit = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
-      console.log("ImageEdit", ImageEdit);
-      ImageEdit = $firebaseArray(ImageEdit);
-      console.log("ImageEdit", ImageEdit);
-      ImageEdit.update($scope.edit.imgUrl);
-
+  $scope.editImage1 = function() {
+      var ImageEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var urlObject1 = {
+        1: $scope.imgUrl1
+      };
+      ImageEdit1.update(urlObject1);
       //Clears the input boxes on add.
-      $scope.edit.imgUrl = "";
+      $scope.img1 = $scope.imgUrl1;
+      $scope.imgUrl1 = "";
+  };
+
+  $scope.editImage2 = function() {
+      var ImageEdit2 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      console.log("ImageEdit2", ImageEdit2);
+      var urlObject2 = {
+        2: $scope.imgUrl2
+      };
+      ImageEdit2.update(urlObject2);
+      //Clears the input boxes on add.
+      $scope.img2 = $scope.imgUrl2;
+      $scope.imgUrl2 = "";
+  };
+
+  $scope.editImage3 = function() {
+      var ImageEdit3 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var urlObject3 = {
+        3: $scope.imgUrl3
+      };
+      ImageEdit3.update(urlObject3);
+      //Clears the input boxes on add.
+      $scope.img3 = $scope.imgUrl3;
+      $scope.imgUrl3 = "";
+  };
+
+  $scope.editImage4 = function() {
+      var ImageEdit4 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var urlObject4 = {
+        4: $scope.imgUrl4
+      };
+      ImageEdit4.update(urlObject4);
+      //Clears the input boxes on add.
+      $scope.img4 = $scope.imgUrl4;
+      $scope.imgUrl4 = "";
+  };
+
+  $scope.editImage5 = function() {
+      var ImageEdit5 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var urlObject5 = {
+        5: $scope.imgUrl5
+      };
+      ImageEdit5.update(urlObject5);
+      //Clears the input boxes on add.
+      $scope.img5 = $scope.imgUrl5;
+      $scope.imgUrl5 = "";
   };
 
     // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
@@ -36,12 +77,10 @@ app.controller("EditController",
       $location.path('/login').replace();
     }
 
-    console.log("currentShowArray", currentShowArray);
-
     for (var i in currentShowArray[0].comments){
         $scope.comments = currentShowArray[0].comments[i]; 
-        console.log("currentShowArray[0].comments[i]", currentShowArray[0].comments[i]);  
     }
+
      for (var i in currentShowArray[0].reflections){
         $scope.comments = currentShowArray[0].reflections[i];   
     }

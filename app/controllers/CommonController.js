@@ -86,7 +86,16 @@ app.controller("CommonController",
 	    var ShowRef = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title + "/");
 	   	var ImageFile = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title +"/img/");
 	    var CommentFile = new Firebase("https://front-end-data.firebaseio.com/shows/" + $scope.show.title + "/comments/");
-	 
+	    
+        var imgObject = {
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 4,
+            5: 5
+            };
+        ImageFile.update(imgObject);
+
 	    ShowRef = $firebaseArray(ShowRef);
 	   	ImageFile = $firebaseArray(ImageFile);
 	   	CommentFile = $firebaseArray(CommentFile);
