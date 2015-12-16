@@ -22,67 +22,8 @@ app.controller("ViewController",
       $location.path('/login').replace();
     }
 
-    console.log("currentShowArray", currentShowArray);
-
-    for (var i in currentShowArray[0].comments){
-        $scope.comments = currentShowArray[0].comments[i]; 
-        console.log("currentShowArray[0].comments[i]", currentShowArray[0].comments[i]);  
-    }
-     for (var i in currentShowArray[0].reflections){
-        $scope.comments = currentShowArray[0].reflections[i];   
-    }
-
-    for (var i in currentShowArray[0].img){
-        $scope.img = currentShowArray[0].img[i];   
-    }
-
-    for (var i in currentShowArray[0].text){
-        $scope.text = currentShowArray[0].text[i];   
-    }
-
-    for (var i in currentShowArray[0].$id){
-        $scope.id = currentShowArray[0].$id[i];   
-    }
-    
-    for (var i in currentShowArray[0].timer){
-        $scope.timer = currentShowArray[0].timer[i];   
-    }
-
 }]);
 
 
 
-  //   $scope.loginUser = function() {
-  //     console.log("Login clicked");
-  //     $scope.message = null;
-  //     $scope.error = null;
-
-  //     Auth.useAuth().$authWithPassword({
-  //       email: $scope.user.email,
-  //       password: $scope.user.password
-  //     }).then(function(userData) {
-  //       $scope.message = "User logged in with uid: " + userData.uid;
-  //       Auth.logUs(true);
-  //       Auth.setUid(userData.uid);
-  //     })
-  //     .then(function() {
-  //     $rootScope.loggedIn = true;
-  //     $location.path('/common').replace();
-  //     })
- 
-  //     .catch(function(error) {
-  //     console.log("Error in the addRef:", error);
-  //     });
-  // };
-
-  //   $scope.editShow = function() {
-  //       Load the data
-  //       Load a page that brings up the data from the view button clicked.
-  //       this.data populated to a page
-  //       then
-  //       view that page
-  //     console.log("Edit clicked");
-  //     $location.path('/common').replace();
-
-  // };
 

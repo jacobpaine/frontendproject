@@ -8,7 +8,26 @@
 
 <p>{{id}} id </p>
 
-<img src ="{{img1}}">
+<label>
+	<div class="labels">
+		Add a show
+	</div>
+	<div>
+		<p>Title</p>
+		<input type="text" ng-model="show.title">
+	</div>
+	<div>
+		<p>imgURL</p>
+		<input type="text" ng-model="show.imgUrl">
+	</div>
+</label>
+
+
+
+
+
+
+<!-- <img src ="{{img1}}">
 <input placeholder="Image URL" ng-model="imgUrl1"></input>
 <button ng-click="editImage1()">Some text</button> 
 
@@ -26,4 +45,4 @@
 
 <img src ="{{img5}}">
 <input placeholder="Image URL" ng-model="imgUrl5"></input>
-<button ng-click="editImage5()">Some text</button> 
+<button ng-click="editImage5()">Some text</button>  -->
