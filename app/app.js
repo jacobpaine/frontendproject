@@ -20,7 +20,7 @@ app.config(['$routeProvider',
         templateUrl: 'app/partials/edit.html',
         controller: 'EditController'
         })
-      .otherwise('/login');
+      .otherwise('/common');
   }]);
 
   

@@ -1,7 +1,41 @@
 //The common controller: For the People.
 app.controller("EditController",
-	["$q", "$scope", "$rootScope", "$firebaseArray", "Auth", "$location",
-	function($Q, $scope, $rootScope, $firebaseArray, Auth, $location) {
+	["$q", "$scope", "$rootScope", "$firebaseArray", "Auth", "$location", "EditFactory", "$firebaseObject",
+	function($Q, $scope, $rootScope, $firebaseArray, Auth, $location, EditFactory, $firebaseObject) {
+
+  var imageEdit = new Firebase("https://front-end-data.firebaseio.com/shows/");
+  var materialToUse = $firebaseArray(imageEdit);
+
+  console.log("currentShowArray", currentShowArray);
+//Hard-coded in. Must needs be changing.
+  materialToUse.$loaded(
+    function(data) {
+      console.log("data", data);
+      var one = data[0].img[1];
+      $scope.img1 = one;
+      return data;
+    }).then(function(data2) {
+      console.log("data2", data2);
+      var two = data2[0].img[2]
+      $scope.img2 = two;
+      return data2;
+    }).then(function(data3) {
+      console.log("data3", data3);
+      var three = data3[0].img[3]
+      $scope.img3 = three;
+      return data3;
+    }).then(function(data4) {
+      console.log("data4", data4);
+      var four = data4[0].img[4]
+      $scope.img4 = four;
+      return data4;
+    }).then(function(data5) {
+      console.log("data5", data5);
+      var five = data5[0].img[5]
+      $scope.img5 = five;
+      return data5;
+    });
+  
 
 // Log Out Functionality
   $scope.logOut = function() {
@@ -16,19 +50,22 @@ app.controller("EditController",
     $location.path('/common').replace();
   };
 
+  // $scope.img1 = materialToUse[5];
   $scope.editImage1 = function() {
-      var ImageEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
-      var urlObject1 = {
-        1: $scope.imgUrl1
-      };
-      ImageEdit1.update(urlObject1);
+      var ImageEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
+      ImageEdit1 = $firebaseObject(ImageEdit1);
+      console.log("ImageEdit1ONE", ImageEdit1);
+      console.log("$scope.imgUrl1", $scope.imgUrl1);
+
+      ImageEdit1.update($scope.imgUrl1)
+
       //Clears the input boxes on add.
       $scope.img1 = $scope.imgUrl1;
       $scope.imgUrl1 = "";
   };
 
   $scope.editImage2 = function() {
-      var ImageEdit2 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var ImageEdit2 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
       console.log("ImageEdit2", ImageEdit2);
       var urlObject2 = {
         2: $scope.imgUrl2
@@ -40,7 +77,7 @@ app.controller("EditController",
   };
 
   $scope.editImage3 = function() {
-      var ImageEdit3 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var ImageEdit3 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
       var urlObject3 = {
         3: $scope.imgUrl3
       };
@@ -51,7 +88,7 @@ app.controller("EditController",
   };
 
   $scope.editImage4 = function() {
-      var ImageEdit4 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var ImageEdit4 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
       var urlObject4 = {
         4: $scope.imgUrl4
       };
@@ -62,7 +99,7 @@ app.controller("EditController",
   };
 
   $scope.editImage5 = function() {
-      var ImageEdit5 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShow.$id +"/img/");
+      var ImageEdit5 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
       var urlObject5 = {
         5: $scope.imgUrl5
       };
@@ -77,65 +114,5 @@ app.controller("EditController",
       $location.path('/login').replace();
     }
 
-    for (var i in currentShowArray[0].comments){
-        $scope.comments = currentShowArray[0].comments[i]; 
-    }
-
-     for (var i in currentShowArray[0].reflections){
-        $scope.comments = currentShowArray[0].reflections[i];   
-    }
-
-    for (var i in currentShowArray[0].img){
-        $scope.img = currentShowArray[0].img[i];   
-    }
-
-    for (var i in currentShowArray[0].text){
-        $scope.text = currentShowArray[0].text[i];   
-    }
-
-    for (var i in currentShowArray[0].$id){
-        $scope.id = currentShowArray[0].$id[i];   
-    }
-    
-    for (var i in currentShowArray[0].timer){
-        $scope.timer = currentShowArray[0].timer[i];   
-    }
-
 }]);
-
-
-
-  //   $scope.loginUser = function() {
-  //     console.log("Login clicked");
-  //     $scope.message = null;
-  //     $scope.error = null;
-
-  //     Auth.useAuth().$authWithPassword({
-  //       email: $scope.user.email,
-  //       password: $scope.user.password
-  //     }).then(function(userData) {
-  //       $scope.message = "User logged in with uid: " + userData.uid;
-  //       Auth.logUs(true);
-  //       Auth.setUid(userData.uid);
-  //     })
-  //     .then(function() {
-  //     $rootScope.loggedIn = true;
-  //     $location.path('/common').replace();
-  //     })
- 
-  //     .catch(function(error) {
-  //     console.log("Error in the addRef:", error);
-  //     });
-  // };
-
-  //   $scope.editShow = function() {
-  //       Load the data
-  //       Load a page that brings up the data from the view button clicked.
-  //       this.data populated to a page
-  //       then
-  //       view that page
-  //     console.log("Edit clicked");
-  //     $location.path('/common').replace();
-
-  // };
 
