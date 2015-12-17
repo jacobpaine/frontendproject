@@ -7,28 +7,16 @@ app.factory("FirebaseFactory",
   //Arrays
     var allShows = $firebaseArray(showRef);
 
-// ****Fire letter lower case unless its a constructor function
-
 //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
     function addShow(showToAdd){
-      var showLoc = showRef.child(showToAdd);
-      var imgLoc = showLoc.child("img");
-      var commentsLoc = showLoc.child("commments")
-
-      imgLoc.child("img1").update("https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Opossum_2.jpg/120px-Opossum_2.jpg");
-      imgLoc.child("img2").update("https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Opossum_2.jpg/120px-Opossum_2.jpg");
-      imgLoc.child("img3").update("https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Opossum_2.jpg/120px-Opossum_2.jpg");
-      imgLoc.child("img4").update("https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Opossum_2.jpg/120px-Opossum_2.jpg");
-      imgLoc.child("img5").update("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Platypus-sketch.jpg/220px-Platypus-sketch.jpg");
-
-      //Add the name of the show to FireBase
-      showLoc = $firebaseArray(showLoc);
-      imgLoc = $firebaseArray(imgLoc);
-
-      showLoc.$add(showToAdd);
-
+      var showLoc = showRef.child(showToAdd.title);
+      showLoc.set(showToAdd);
     };
 
+    //Adds a slide
+    $scope.addSlide = function(newSlide) {
+      console.log("thisShow");
+    }
 
     function editWhat (WhatToEdit){
       console.log("WhatToEdit", WhatToEdit);
@@ -39,15 +27,16 @@ app.factory("FirebaseFactory",
       console.log("WhatToView", WhatToView);
     };
     
+    // Back to Main Board
+    $scope.backToMain = function() {
+    $location.path('/common').replace();
+    };
 
     function doMe (doIt) {
       //Put things in here you want to do.
-        addShow();
     };
 
   return {
-      editWhat:editWhat,
-      viewWhat:viewWhat,
       addShow:addShow,
 
   };

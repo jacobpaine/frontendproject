@@ -6,38 +6,17 @@
 		</div>
 		<div class="showTitle">
 			<div ng-repeat="show in allShows">
-				<div ng-repeat="thing in show.img">
-					<div>
-						<img ng-src="{{ thing }}">
-						<button class="btn" ng-click="viewShow()">View</button>
-						<button class="btn" ng-click="editShow()">Edit</button>
-						<hr>
+				<p>{{show.title}}</p>
+				<div ng-repeat="thing in show">
+					<div ng-repeat="items in thing">
+						<div>
+							<img ng-src="{{ items }}">
+						</div>
 					</div>	
-<!-- 					<div>
-						<img ng-src="{{ thing }}">
-						<button class="btn" ng-click="viewShow()">View</button>
-						<button class="btn" ng-click="editShow()">Edit</button>
-						<hr>
-					</div>
-					<div>	
-						<img ng-src="{{ thing }}">
-						<button class="btn" ng-click="viewShow()">View</button>
-						<button class="btn" ng-click="editShow()">Edit</button>
-						<hr>
-					</div>
-					<div>	
-						<img ng-src="{{ thing }}">
-						<button class="btn" ng-click="viewShow()">View</button>
-						<button class="btn" ng-click="editShow()">Edit</button>
-						<hr>
-					</div>
-					<div>	
-						<img ng-src="{{ thing }}">
-						<button class="btn" ng-click="viewShow()">View</button>
-						<button class="btn" ng-click="editShow()">Edit</button>
-						<hr>
-					</div>	 -->
 				</div>
+				<button class="btn" ng-click="viewShow()">View</button>
+				<button class="btn" ng-click="editShow()">Edit</button>
+				<hr>
 			</div>
 		</div>
 
@@ -57,6 +36,7 @@
 			<div class="labels">
 				Add a show
 			</div>
+		</label>
 			
 			<div>
 				<p>Title</p>
@@ -67,6 +47,6 @@
 				<p>imgURL</p>
 				<input type="text" ng-model="show.imgUrl">
 			</div>
-		</label>
+			
 </div> <!--Common content end-->
 
