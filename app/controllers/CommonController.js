@@ -10,19 +10,19 @@ app.controller("CommonController",
     $scope.allShows = allShows;
 
 //Log Out Functionality
-  $scope.logOut = function() {
-    Auth.useAuth().$unauth();
-    $scope.authData = null;
-    $scope.user={};
-    $location.path('/login').replace();
-  };
+    $scope.logOut = function() {
+        Auth.useAuth().$unauth();
+        $scope.authData = null;
+        $scope.user={};
+        $location.path('/login').replace();
+    };
 
     // $scope.allShows = allShows;
 
     // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
     if ($rootScope.loggedIn !== true) {
-      $location.path('/login').replace();
-    }
+        $location.path('/login').replace();
+    };
 
     //This is the addShow tool. It just adds shows to Firebase.
 
@@ -34,19 +34,19 @@ app.controller("CommonController",
          },
         };
         FirebaseFactory.addShow(showToAdd);
+    };
+
+    $scope.viewEdit = function (thisShow) {
+
+        $location.path('/edit').replace();
+        FirebaseFactory.setShow(this.show);
     }
+
+    // Back to Main Board
+    $scope.backToMain = function() {
+    $location.path('/common').replace();
+    };
+
 }]);
 
 
-
-    // $scope.createShow = function () { 
-    // var showToAdd = {    
-    //     title: $scope.show.title,
-    //     slide: {
-    //         img: $scope.show.imgUrl,
-    //         // timer: $scope.show.timer,
-    //         // sound: $scope.show.sound,
-    //      },
-    //     };
-    //     FirebaseFactory.addShow(showToAdd);
-    // }

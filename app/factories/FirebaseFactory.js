@@ -1,10 +1,12 @@
 app.factory("FirebaseFactory", 
   ["$rootScope", "$firebaseAuth", "$firebaseArray", function($rootScope, $firebaseAuth, $firebaseArray) {
-  //Variables
+
+//Variables
     var showRef = new Firebase("https://front-end-data.firebaseio.com/shows/");
     var uid;
-
-  //Arrays
+    var current = "";
+    
+//Arrays
     var allShows = $firebaseArray(showRef);
 
 //Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
@@ -13,32 +15,22 @@ app.factory("FirebaseFactory",
       showLoc.set(showToAdd);
     };
 
-    //Adds a slide
-    $scope.addSlide = function(newSlide) {
-      console.log("thisShow");
+    function setShow(show){
+      return current = show;
     }
 
-    function editWhat (WhatToEdit){
-      console.log("WhatToEdit", WhatToEdit);
-      currentShowArray[0] = WhatToEdit;
-    };
-    
-    function viewWhat (WhatToView){
-      console.log("WhatToView", WhatToView);
-    };
-    
-    // Back to Main Board
-    $scope.backToMain = function() {
-    $location.path('/common').replace();
-    };
+    function getShow(){
+      return current;
+    }
 
     function doMe (doIt) {
-      //Put things in here you want to do.
+//Put things in here you want to do.
     };
 
   return {
       addShow:addShow,
-
+      getShow:getShow,
+      setShow:setShow,
   };
 }]);
 

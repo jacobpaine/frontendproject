@@ -1,4 +1,4 @@
-<div> I AM THE EDIT PAGE!</div>
+<div>EDIT PAGE!</div>
 
 		<div>
 		    <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
@@ -6,22 +6,20 @@
 		</div>
 
 <div>Edit Show</div>
-<p>{{ title }}</p>
-<p>{{ imgUrl }} </p>
 
-<label>
 	<div class="labels">
-		Add a show
+		Add a slide
 	</div>
-	<div>
-		<p>Title</p>
-		<input type="text" ng-model="show.title">
-	</div>
-	<div>
-		<p>imgURL</p>
-		<input type="text" ng-model="show.imgUrl">
-	</div>
-</label>
+	
+<button class="btn" type="button" ng-click="addSlide()">Add Slide</button>
 
+<div>
+	<p>Title</p>
+	<input type="text" ng-model="show.title">
+</div>
 
+<div>
+	<p>imgURL</p>
+	<input type="text" ng-model="show.imgUrl">
+</div>
 

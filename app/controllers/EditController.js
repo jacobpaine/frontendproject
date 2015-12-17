@@ -15,21 +15,28 @@ app.controller("EditController",
     $location.path('/login').replace();
   };
 
+  $scope.createSlide = function (slideInfo) { 
+    var slideToAdd = {    
+        title: $scope.show.title,
+        slide: {
+            img: $scope.show.img
+         },
+        };
+        FirebaseFactory.addSlide(slideToAdd);
+    };
 
-  // $scope.img1 = materialToUse[5];
-  $scope.editImage1 = function() {
-      var ImageEdit1 = new Firebase("https://front-end-data.firebaseio.com/shows/" + currentShowArray[0].$id +"/img/");
-      ImageEdit1 = $firebaseObject(ImageEdit1);
-      console.log("ImageEdit1ONE", ImageEdit1);
-      console.log("$scope.imgUrl1", $scope.imgUrl1);
+//Adds a slide
+    $scope.addSlide = function () {
+      var x = FirebaseFactory.getShow();
+      console.log("something!");
+      console.log("x", x);
 
-      ImageEdit1.update($scope.imgUrl1)
+    };
 
-      //Clears the input boxes on add.
-      $scope.img1 = $scope.imgUrl1;
-      $scope.imgUrl1 = "";
-  };
-
+// Back to Main Board
+    $scope.backToMain = function () {
+    $location.path('/common').replace();
+    };
 
 }]);
 
