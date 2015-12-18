@@ -18,7 +18,6 @@ app.factory("Auth",
   	},
   	logUs: function(inorOut){
   		$rootScope.loggedIn = inorOut;
-  		console.log("inorOut", inorOut);
   	},
   	isLoggedIn: function(){
   		return $rootScope.loggedIn;

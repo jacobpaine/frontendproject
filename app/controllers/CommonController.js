@@ -17,27 +17,17 @@ app.controller("CommonController",
         $location.path('/login').replace();
     };
 
-    // $scope.allShows = allShows;
-
     // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
     if ($rootScope.loggedIn !== true) {
         $location.path('/login').replace();
     };
 
-    //This is the addShow tool. It just adds shows to Firebase.
-
-	$scope.createShow = function () { 
-    var showToAdd = {    
-        title: $scope.show.title,
-        slide: {
-            img: $scope.show.imgUrl
-         },
-        };
-        FirebaseFactory.addShow(showToAdd);
+    //This is the createShow tool. It creates shows that are then sent to FireBase.
+	$scope.createShow = function (show) { 
+        FirebaseFactory.addShow(show);
     };
 
     $scope.viewEdit = function (thisShow) {
-
         $location.path('/edit').replace();
         FirebaseFactory.setShow(this.show);
     }

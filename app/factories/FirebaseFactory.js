@@ -5,7 +5,7 @@ app.factory("FirebaseFactory",
     var showRef = new Firebase("https://front-end-data.firebaseio.com/shows/");
     var uid;
     var current = "";
-    
+
 //Arrays
     var allShows = $firebaseArray(showRef);
 
@@ -23,6 +23,12 @@ app.factory("FirebaseFactory",
       return current;
     }
 
+    function addSlide1(slide, slideToAdd, thatThing){
+      // var slideLoc = showRef.child(slide.$id);
+      var slideLoc = showRef.child(thatThing);
+      slideLoc.update(slideToAdd);
+    }
+
     function doMe (doIt) {
 //Put things in here you want to do.
     };
@@ -31,6 +37,7 @@ app.factory("FirebaseFactory",
       addShow:addShow,
       getShow:getShow,
       setShow:setShow,
+      addSlide1:addSlide1
   };
 }]);
 

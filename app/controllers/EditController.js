@@ -3,9 +3,15 @@ app.controller("EditController",
 	["$q", "$scope", "$rootScope", "$firebaseArray", "Auth", "$location", "FirebaseFactory", "$firebaseObject",
 	function($Q, $scope, $rootScope, $firebaseArray, Auth, $location, FirebaseFactory, $firebaseObject) {
 
-  var imageEdit = new Firebase("https://front-end-data.firebaseio.com/shows/");
-  var materialToUse = $firebaseArray(imageEdit);
+  var showRef = new Firebase("https://front-end-data.firebaseio.com/shows/");
+  var slide = FirebaseFactory.getShow();
+  $scope.slide = slide;
+  console.log("slide", slide);
 
+// Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
+if ($rootScope.loggedIn !== true) {
+    $location.path('/login').replace();
+};
 
 // Log Out Functionality
   $scope.logOut = function() {
@@ -15,24 +21,36 @@ app.controller("EditController",
     $location.path('/login').replace();
   };
 
-  $scope.createSlide = function (slideInfo) { 
-    var slideToAdd = {    
-        title: $scope.show.title,
-        slide: {
-            img: $scope.show.img
-         },
-        };
-        FirebaseFactory.addSlide(slideToAdd);
-    };
+
+//Show slides
+    // $scope.showSlides = function () {
+    //   var slide = FirebaseFactory.getShow();
+    //   console.log("xslide", x.slide);
+
+    //   $scope.slide.title
+    // };
 
 //Adds a slide
-    $scope.addSlide = function () {
-      var x = FirebaseFactory.getShow();
-      console.log("something!");
-      console.log("x", x);
+    $scope.addSlide = function (slide) {
+      console.log("slide", slide);
+      var slideToAdd = {    
+          title: $scope.show.title,
+          imgUrl: $scope.show.imgUrl,
+          timer: $scope.show.timer
+        };
+      var thing = slide.title;
+      // FirebaseFactory.addSlide1(slide, slideToAdd, thing);
+      showRef.child(slide.$id).push(slideToAdd);
+      showRef.child(slide.$id).child("title").remove();
 
-    };
+      // showRef = $firebaseArray(showRef);
+      // console.log("FBcall", showRef);
+      // console.log("id", slide.$id);
+      // // var title = showRef.child(slide.title);
+      // slide.child(thing);
+      // console.log("thing", thing);
 
+    }
 // Back to Main Board
     $scope.backToMain = function () {
     $location.path('/common').replace();

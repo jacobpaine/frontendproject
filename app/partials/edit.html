@@ -6,12 +6,28 @@
 		</div>
 
 <div>Edit Show</div>
+	{{ slide.title }}
+	<img src="{{ slide.slide.img }}">
 
 	<div class="labels">
 		Add a slide
 	</div>
-	
-<button class="btn" type="button" ng-click="addSlide()">Add Slide</button>
+
+			<div>
+				<p>Title</p>
+				<input type="text" ng-model="show.title">
+			</div>
+			
+			<div>
+				<p>imgURL</p>
+				<input type="text" ng-model="show.imgUrl">
+			</div>
+
+			<div>
+				<p>timer</p>
+				<input type="text" ng-model="show.timer">
+			</div>
+<button class="btn" type="button" ng-click="addSlide(slide)">Add Slide</button>
 
 <div>
 	<p>Title</p>
