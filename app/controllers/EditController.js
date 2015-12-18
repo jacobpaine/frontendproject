@@ -5,9 +5,10 @@ app.controller("EditController",
 
   var showRef = new Firebase("https://front-end-data.firebaseio.com/shows/");
   var slide = FirebaseFactory.getShow();
+
   $scope.slide = slide;
   console.log("slide", slide);
-
+  
 // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
 if ($rootScope.loggedIn !== true) {
     $location.path('/login').replace();
@@ -39,18 +40,30 @@ if ($rootScope.loggedIn !== true) {
           timer: $scope.show.timer
         };
       var thing = slide.title;
-      // FirebaseFactory.addSlide1(slide, slideToAdd, thing);
       showRef.child(slide.$id).push(slideToAdd);
       showRef.child(slide.$id).child("title").remove();
 
-      // showRef = $firebaseArray(showRef);
-      // console.log("FBcall", showRef);
-      // console.log("id", slide.$id);
-      // // var title = showRef.child(slide.title);
-      // slide.child(thing);
-      // console.log("thing", thing);
+      // FirebaseFactory.addSlide1(slide, slideToAdd, thing);
 
     }
+
+//Edits a slide
+    $scope.editSlide = function (slide) {
+      console.log("slide", slide);
+      var slideToEdit = {    
+          title: $scope.show.title,
+          imgUrl: $scope.show.imgUrl,
+          timer: $scope.show.timer
+        };
+      var thing = slide.title;
+      showRef.child(slide.$id).push(slideToAdd);
+      showRef.child(slide.$id).child("title").remove();
+
+      // FirebaseFactory.addSlide1(slide, slideToAdd, thing);
+
+    }
+
+
 // Back to Main Board
     $scope.backToMain = function () {
     $location.path('/common').replace();

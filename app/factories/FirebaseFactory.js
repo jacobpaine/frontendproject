@@ -6,10 +6,7 @@ app.factory("FirebaseFactory",
     var uid;
     var current = "";
 
-//Arrays
-    var allShows = $firebaseArray(showRef);
-
-//Puts all the data in the Firebase (commonBoard) into a firebaseArray and sets it to the variable allShows.
+//Functions used in controllers
     function addShow(showToAdd){
       var showLoc = showRef.child(showToAdd.title);
       showLoc.set(showToAdd);
@@ -23,21 +20,18 @@ app.factory("FirebaseFactory",
       return current;
     }
 
-    function addSlide1(slide, slideToAdd, thatThing){
+//This is actually the edit function now
+    function editSlide(slide, slideToAdd, thatThing){
       // var slideLoc = showRef.child(slide.$id);
       var slideLoc = showRef.child(thatThing);
       slideLoc.update(slideToAdd);
     }
 
-    function doMe (doIt) {
-//Put things in here you want to do.
-    };
-
   return {
       addShow:addShow,
       getShow:getShow,
       setShow:setShow,
-      addSlide1:addSlide1
+      editSlide:editSlide
   };
 }]);
 
