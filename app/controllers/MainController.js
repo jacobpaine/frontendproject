@@ -21,7 +21,7 @@ app.controller("loginControl",
 
         // logUs, a nice little trick I've stolen from Ostrander. This allows for us to know if we're logged in or out. Useful for logout confirmation. This is a good point in the code to go take a look at Auth. Then come back, don't worry, we'll still be here.
 
-        Auth.logUs(true);
+        // Auth.logUs(true);
 
       //Using useAuth (from Auth.js), which uses AngularFire's $createUser method(?), we set those preset values to specific scopes. (See https://www.firebase.com/docs/web/libraries/angular/api.html - $createUser() for more.)
 

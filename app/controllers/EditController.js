@@ -10,9 +10,9 @@ app.controller("EditController",
   console.log("slide", slide);
   
 // Just in case someone's trying to sneak in. We check if they have loggedIn. Send'em back to log in.
-if ($rootScope.loggedIn !== true) {
-    $location.path('/login').replace();
-};
+// if ($rootScope.loggedIn !== true) {
+//     $location.path('/login').replace();
+// };
 
 // Log Out Functionality
   $scope.logOut = function() {

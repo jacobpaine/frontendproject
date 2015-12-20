@@ -9,13 +9,13 @@
 		</div>
 		<div class="showTitle">
 			<div ng-repeat="show in allShows">
-				<p>{{show.title}}</p>
+				<p>{{ show.$id }}</p>
 				<div ng-repeat="thing in show">
-					<div ng-repeat="items in thing">
+<!-- 					<div ng-repeat="items in thing">
 						<div>
 							<img ng-src="{{ items }}">
 						</div>
-					</div>	
+					</div>	 -->
 				</div>
 				<button class="btn" ng-click="viewShow(show)">View</button>
 				<button class="btn" ng-click="viewEdit(show)">Edit</button>
