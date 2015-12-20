@@ -1,40 +1,24 @@
 <div>EDIT PAGE!</div>
 
-		<div>
-		    <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
-			<button class="btn btn-primary" type="button" ng-click="backToMain()">Back to Main</button>
-		</div>
+<div>
+    <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
+	<button class="btn btn-primary" type="button" ng-click="backToMain()">Back to Main</button>
+</div>
 
 <div>Edit Show</div>
 
-		<div class="showTitle">
-			<div ng-repeat="show in slide">
-				<p>{{show.title}}</p>
-				<p>{{show.imgUrl}}</p>
-				<p>{{show.timer}}</p>
-				<hr>
-			</div>
-		</div>
-
-
-	<div class="labels">
-		Add a slide
+<div class="showTitle">
+	<div ng-repeat="show in slide">
+		<p>{{show.title}}</p>
+		<p>{{show.imgUrl}}</p>
+		<p>{{show.timer}}</p>
+		<hr>
 	</div>
-			<div>
-				<p>Title</p>
-				<input type="text" ng-model="show.title">
-			</div>
-			
-			<div>
-				<p>imgURL</p>
-				<input type="text" ng-model="show.imgUrl">
-			</div>
+</div>
 
-			<div>
-				<p>timer</p>
-				<input type="text" ng-model="show.timer">
-			</div>
-<button class="btn" type="button" ng-click="addSlide(slide)">Add Slide</button>
+<div class="labels">
+	Add a slide
+</div>
 
 <div>
 	<p>Title</p>
@@ -45,4 +29,12 @@
 	<p>imgURL</p>
 	<input type="text" ng-model="show.imgUrl">
 </div>
+
+<div>
+	<p>timer</p>
+	<input type="text" ng-model="show.timer">
+</div>
+
+<button class="btn" type="button" ng-click="addSlide(slide)">Add Slide</button>
+
 

@@ -1,0 +1,42 @@
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333; }
+
+#loginContent {
+  text-align: center; }
+
+#loginInput {
+  padding-top: 10px; }
+
+#passwordInput {
+  padding-top: 5px; }
+
+#loginButtons {
+  padding-top: 10px; }
+
+#loginButton {
+  color: #333; }
+
+#signupButton {
+  color: #333; }
+
+/**********************************
+MEDIA QUERIES
+**********************************/
+@media (min-width: 800px) {
+  #columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3; } }
+@media (min-width: 1060px) {
+  #columns {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4; } }
+@media (min-width: 1320px) {
+  #columns {
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5; } }
+
+/*# sourceMappingURL=main.css.map */
