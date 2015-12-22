@@ -1,4 +1,4 @@
-var app = angular.module("ShowApp", ["ngRoute", "firebase", "ui.bootstrap"]);
+var app = angular.module("ShowApp", ["ngRoute", "firebase", "ui.bootstrap", 'ngAnimate']);
 
 
 app.config(['$routeProvider',
