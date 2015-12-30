@@ -1,41 +1,64 @@
-<!doctype html>
-<html ng-app="ui.bootstrap.demo">
-  <head>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
-    <script src="something.js"></script>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
+<html>
+    <head>
+    </head>
 
-<div ng-controller="CarouselDemoCtrl">
-  <div style="height: 305px">
-    <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
-      <uib-slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto;">
-        <div class="carousel-caption">
-          <h4>Slide {{$index}}</h4>
-          <p>{{slide.text}}</p>
+        
+    <body>
+    <h2>OPEN LIBRARY TEST</h2>
+       <div ng-app="LibraryApp" ng-controller="testCtrl">
+            
+            <div>
+                <input type="text" ng-model="isbn">
+                <button ng-click="searchIsbn()">Search Isbn</button>
+            </div>
+
+            <div>
+                <input type="text" ng-model="author">
+                <button ng-click="searchAuthor()">Search Author</button>
+            </div>
+
+            <div>
+                <input type="text" ng-model="language">
+                <button ng-click="searchLanguage()">Search Language</button>
+            </div>
+
+            <div>
+                <input type="text" ng-model="title">
+                <button ng-click="searchTitle()">Search Title</button>
+            </div>
+
+            <div>
+                <input type="text" ng-model="publish_year">
+                <button ng-click="searchYear()">Search Year</button>
+            </div>
+
+            <p>  
+                <li ng-repeat="doc in docs">
+                    <div class="thisBook">    
+                        <p>{{ doc.author_name }}</p>
+                        <p>{{ doc.title }}</p>
+                        <p>{{ doc.language }}</p>
+                        <p>{{ doc.publish_year }}</p>
+                        <p>{{ doc.subject }}</p>    
+                        <button ng-click="addBook(doc)">Add this Book to your Library</button>
+                    </div>    
+                </li>
+            </p>
+
         </div>
-      </uib-slide>
-    </uib-carousel>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" ng-model="noWrapSlides">
-          Disable Slide Looping
-        </label>
-      </div>
-    </div>
-    <div class="col-md-6">
-      Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">
-      <br />Enter a negative number or 0 to stop the interval.
-    </div>
-  </div>
-</div>
-  </body>
+    </body>
+
+        <script src="lib/bower_components/jquery/dist/jquery.js"></script>
+        <script src="lib/bower_components/angular/angular.js"></script>
+        <script src="lib/bower_components/angular-route/angular-route.js"></script>
+        <script src="lib/bower_components/firebase/firebase.js"></script>
+        <script src="lib/bower_components/angularfire/dist/angularfire.js"></script>
+
+
+    <!-- <script src="https://openlibrary.org/api/books?bibkeys=ISBN:0596156715&callback=mycallback"></script> -->
+
+        <script src="something.js"></script>
+        <script src="openlibrary.js"></script> 
+
 </html>
+
