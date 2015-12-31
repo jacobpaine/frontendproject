@@ -1,4 +1,4 @@
-app.controller("testCtrl",
+app.controller("openLibraryCtrl",
     ["$scope", "$http", "$firebaseArray",
     function($scope, $http, $firebaseArray) {
 
@@ -71,8 +71,7 @@ app.controller("testCtrl",
     $scope.removeBook = function(doc){
         console.log("removedoc", doc);
         var i;
-        for (i = 0; i < firebaseBookArray.length; i++ ){
-            // console.log("firebaseBookArray[i].title", firebaseBookArray[i].title);
+        for (i = 0; i < firebaseBookArray.length; i++){
             if (firebaseBookArray[i].title === doc.title){
                 firebaseBookArray.$remove(firebaseBookArray[i]);
             }
