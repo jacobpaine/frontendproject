@@ -3,6 +3,7 @@ app.controller("testCtrl",
     function($scope, $http, $firebaseArray) {
 
     var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
+    var firebaseBookArray = $firebaseArray(firebaseBook);
 
     //var isbn = '9780261102385'
     $scope.searchAuthor = function(){
@@ -64,12 +65,30 @@ app.controller("testCtrl",
           publish_year: doc.publish_year,
           title: doc.title
         };
-        console.log("bookToAdd", bookToAdd);
-        var firebaseBookArray = $firebaseArray(firebaseBook)
-        console.log("firebaseBookArray", firebaseBookArray);
         firebaseBookArray.$add(bookToAdd);
     };
     
+    $scope.removeBook = function(doc){
+        console.log("removedoc", doc);
+        var i;
+        for (i = 0; i < firebaseBookArray.length; i++ ){
+            // console.log("firebaseBookArray[i].title", firebaseBookArray[i].title);
+            if (firebaseBookArray[i].title === doc.title){
+                firebaseBookArray.$remove(firebaseBookArray[i]);
+            }
+        }
+
+        // console.log("firebaseBook", firebaseBook);
+        // console.log("firebaseBookArray", firebaseBookArray);
+        // console.log("firebaseBookArray[0].title", firebaseBookArray[0].title);
+
+        // if (doc === firebaseBook.child.title)
+        // showRef.child(slide.$id).child("title").remove();
+        // var firebaseBookArray = $firebaseArray(firebaseBook)
+
+        // firebaseBookArray.$remove(bookToRemove);
+
+    };
 
 
 }]);
