@@ -55,7 +55,11 @@ app.controller("openLibraryCtrl",
                 $scope.docs = response.data.docs
                 $scope.publish_year = "";
         });
-    },
+    };
+
+    $scope.clearPage = function(){
+        $scope.docs = "";
+        };
 
     $scope.addBook = function(doc){
         console.log("doc", doc);
@@ -75,7 +79,8 @@ app.controller("openLibraryCtrl",
             if (firebaseBookArray[i].title === doc.title){
                 firebaseBookArray.$remove(firebaseBookArray[i]);
             }
-        }
+        };
+
 
         // console.log("firebaseBook", firebaseBook);
         // console.log("firebaseBookArray", firebaseBookArray);

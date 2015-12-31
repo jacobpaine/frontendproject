@@ -32,6 +32,10 @@
                 <button ng-click="searchYear()">Search Year</button>
             </div>
 
+            <div>
+            	<button ng-click="clearPage()">Clear</button>
+            </div>
+
             <p>  
                 <li ng-repeat="doc in docs">
                     <div class="thisBook">    
@@ -39,7 +43,8 @@
                         <p>{{ doc.title }}</p>
                         <p>{{ doc.language }}</p>
                         <p>{{ doc.publish_year }}</p>
-                        <p>{{ doc.subject }}</p>    
+                        <p>{{ doc.subject }}</p>
+                        <p>{{ doc.isbn }}</p>    
                         <button ng-click="addBook(doc)">Add this Book to your Library</button>
                         <button ng-click="removeBook(doc)">Remove this Book from Library</button>
                     </div>    
@@ -47,6 +52,13 @@
             </p>
 
         </div>
+
+        <div class="myLibrary">
+        	<p>My Library</p>
+
+        </div>
+
+
     </body>
 
         <script src="lib/bower_components/jquery/dist/jquery.js"></script>
