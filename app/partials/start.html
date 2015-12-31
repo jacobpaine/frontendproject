@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
     <head>
     </head>
 
@@ -32,6 +32,12 @@
                 <button ng-click="searchYear()">Search Year</button>
             </div>
 
+            <div>
+            	<button ng-click="clearPage()">Clear</button>
+            </div>
+
+	        <button ng-click="toMyLibrary()">My Library</button>
+
             <p>  
                 <li ng-repeat="doc in docs">
                     <div class="thisBook">    
@@ -39,7 +45,8 @@
                         <p>{{ doc.title }}</p>
                         <p>{{ doc.language }}</p>
                         <p>{{ doc.publish_year }}</p>
-                        <p>{{ doc.subject }}</p>    
+                        <p>{{ doc.subject }}</p>
+                        <p>{{ doc.isbn }}</p>    
                         <button ng-click="addBook(doc)">Add this Book to your Library</button>
                         <button ng-click="removeBook(doc)">Remove this Book from Library</button>
                     </div>    
@@ -47,19 +54,17 @@
             </p>
 
         </div>
+
+
+
     </body>
 
-        <script src="lib/bower_components/jquery/dist/jquery.js"></script>
-        <script src="lib/bower_components/angular/angular.js"></script>
-        <script src="lib/bower_components/angular-route/angular-route.js"></script>
-        <script src="lib/bower_components/firebase/firebase.js"></script>
-        <script src="lib/bower_components/angularfire/dist/angularfire.js"></script>
-
-
-    <!-- <script src="https://openlibrary.org/api/books?bibkeys=ISBN:0596156715&callback=mycallback"></script> -->
-
-        <script src="app/app.js"></script>
-        <script src="app/controllers/openlibrary.js"></script> 
 
 </html>
+
+
+
+
+
+
 

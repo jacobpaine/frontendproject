@@ -4,14 +4,18 @@ var app = angular.module("LibraryApp", ["ngRoute", "firebase"]);
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
-      .when('/index', {
-        templateUrl: 'index.html',
+      .when('/start', {
+        templateUrl: 'app/partials/start.html',
         controller: 'openLibraryCtrl'
+      }),
+    $routeProvider
+      .when('/mylibrary', {
+        templateUrl: 'app/partials/mylibrary.html',
+        controller: 'myLibraryCtrl'
       })
-      .otherwise('/main');
+      .otherwise('/start');
   }]);
 
-  
 
 
 
