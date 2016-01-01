@@ -40,19 +40,13 @@
 
             <p>  
                 <ul ng-repeat="doc in docs track by $index">
-                <p>{{ doc.author }}</p>
-                <p>{{ doc.title }}</p>
-
-<!--                             <p>{{ doc }}</p>
- -->
-                            <!-- <p>{{ finalString }}</p> -->
-                            
-    <!--                         <p>{{ doc.language }}</p>
-                            <p>{{ doc.publish_year }}</p>
-                            <p>{{ doc.subject }}</p>
-                            <p>{{ doc.isbn }}</p>    --> 
-                        <button ng-click="addBook(doc)">Add this Book to your Library</button>
-                        <button ng-click="removeBook(doc)">Remove this Book from Library</button>
+                    <p>{{ doc.author }}</p>
+                    <p>{{ doc.title }}</p>
+                    <!-- Add Remove Buttons passing in selected book from DOM -->
+                    <button ng-click="addBook(doc)">Add this Book to your Library</button>
+                    <button ng-click="removeBook(doc)">Remove this Book from Library</button>
+                    <hr>
+                </ul>
                     </div>    
                 </li>
             </p>

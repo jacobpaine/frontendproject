@@ -12,35 +12,31 @@ app.controller("openLibraryCtrl",
         var proofMe;
         var i;
         var booksToDom = [];
-
+            //Using $http.get to grab information from Open Library
             $http.get(searchUrl)   
                 .then(function (response) {
                     console.log("response", response);
-
+              //The response parameter is held in the proofMe variable.
               proofMe = response.data.docs;
+
+              //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
 
-                
-                //Only strings can be replaced. Make it a string.
+                //Only strings can use the replace method. Stringify!
                 var authorString = JSON.stringify(proofMe[i]["author_name"]);
 
-                //Get rid of special symbols etc.
-                authorString = authorString.replace(/[^\w\s]/gi, '');
-                var authorRevised = authorString.replace(/\s{2,}/g," ")
+                //Get rid of special symbols etc. Use replace and regular expressions. 
+                //Note to self: Learn more RegEx.
+                authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 
-
+                //The information for each individual book is held in bookToDom obj.
                 var bookToDom = {    
-                    author: authorRevised,
+                    author: authorString,
                     // isbn: doc.isbn,
                     // publish_year: doc.publish_year,
                     title: proofMe[i]["title"]
                 };
-
                 booksToDom.push(bookToDom);
-                console.log("booksToDom", booksToDom);
-                console.log("bookToDom", bookToDom);
-
-
            };
                 $scope.docs = booksToDom;
                 $scope.author = "";
