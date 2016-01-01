@@ -32,7 +32,7 @@ app.controller("openLibraryCtrl",
                 //The information for each individual book is held in bookToDom obj.
                 var bookToDom = {    
                     author: authorString,
-                    // isbn: doc.isbn,
+                    // isbn: proofMe[i]["isbn"],
                     // publish_year: doc.publish_year,
                     title: proofMe[i]["title"]
                 };
