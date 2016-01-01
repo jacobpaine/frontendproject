@@ -1,12 +1,12 @@
 <div>My Library</div>
 <div ng-app="LibraryApp" ng-controller="myLibraryCtrl">
 
-	<button ng-click="toOpenLibrary()">To Open Library</button>
-
 	<div>
 
 		<div>	
-			<button ng-click="searchMyLibrary_title(doc)">Search Titles in My Library</button>
+			<button ng-click="toOpenLibrary()">To Open Library</button>
+			<button ng-click="searchMyLibrary_title(doc)">All Titles in My Library</button>
+			<button ng-click="manualAdd()">Manual Addition</button>
 		</div>
 
 			<label>Search: <input ng-model="searchText"></label>
@@ -14,6 +14,7 @@
 			  <div ng-repeat="book in fullLibrary | filter: searchText track by $index">
 			    	<p>{{ book.authorString }}</p>
 			    	<p>{{ book.titleString }}</p>
+			    	<button ng-click="removeBook(doc)">Remove this Book from Library</button>
 			    	<hr>
 			  </div>
 			</table>

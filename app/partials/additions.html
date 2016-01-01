@@ -1,0 +1,52 @@
+<div> Additions </div>
+
+<div>	
+	<button ng-click="toOpenLibrary()">To Open Library</button>
+    <button ng-click="toMyLibrary()">My Library</button>
+</div>
+
+<div>
+    <div>Author</div>
+    <input type="text" ng-model="author">
+</div>
+
+<div>
+    <div>Title</div>
+    <input type="text" ng-model="title">
+</div>
+
+<div>
+    <div>ISBN</div>
+    <input type="text" ng-model="isbn">
+</div>
+
+<div>
+    <div>Year</div>
+    <input type="text" ng-model="year">
+</div>
+
+<div>
+    <div>Location</div>
+    <input type="text" ng-model="location">
+</div>
+
+<hr>
+<div id="inputCard">
+	<div ng-model="author">Author: {{author}}</div>
+	<div ng-model="title">Title: {{title}}</div>
+	<div ng-model="isbn">ISBN: {{isbn}}</div>
+	<div ng-model="year">Year: {{year}}</div>
+	<div ng-model="location">Location: {{location}}</div>
+		
+	<button ng-click="addManual()"> Add this Book to your Library</button>
+</div>
+
+	        <button ng-click="toMyLibrary()">My Library</button>
+
+
+<!-- 
+<div ng-app="" ng-init="firstName='John';lastName='Doe'">
+
+<p>The full name is: {{ firstName + " " + lastName }}</p>
+ -->
+

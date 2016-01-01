@@ -10,6 +10,10 @@ app.controller("myLibraryCtrl",
             $location.path('/start').replace();
     };
 
+    $scope.manualAdd = function(){
+        $location.path('/additions').replace();
+    };
+    
     $scope.searchMyLibrary_title = function(doc){
     	    var myFullLibrary = [];
 	        for (i = 0; i < firebaseBookArray.length; i++){
@@ -24,28 +28,15 @@ app.controller("myLibraryCtrl",
     	$scope.fullLibrary = myFullLibrary;
 
     	};
-    }]);
 
+    $scope.removeBook = function(){
+        console.log("removedoc", this.book);
+        var i;
+        for (i = 0; i < firebaseBookArray.length; i++){
+            if (firebaseBookArray[i].title === this.book.titleString && this.book.authorString){
+                firebaseBookArray.$remove(firebaseBookArray[i]);
+            }
+        };
 
- // for (i = 0; i < proofMe.length; i++){
-
- //                //Only strings can use the replace method. Stringify!
- //                var authorString = JSON.stringify(proofMe[i]["author_name"]);
-
- //                //Get rid of special symbols etc. Use replace and regular expressions. 
- //                //Note to self: Learn more RegEx.
- //                authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-
- //                //The information for each individual book is held in bookToDom obj.
- //                var bookToDom = {    
- //                    author: authorString,
- //                    // isbn: proofMe[i]["isbn"],
- //                    // publish_year: doc.publish_year,
- //                    title: proofMe[i]["title"]
- //                };
- //                booksToDom.push(bookToDom);
- //           };
- //                $scope.docs = booksToDom;
- //                $scope.author = "";
- //        });
- //    },
+    };
+}]);

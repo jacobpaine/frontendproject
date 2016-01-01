@@ -18,11 +18,6 @@
             </div>
 
             <div>
-                <input type="text" ng-model="language">
-                <button ng-click="searchLanguage()">Search Language</button>
-            </div>
-
-            <div>
                 <input type="text" ng-model="title">
                 <button ng-click="searchTitle()">Search Title</button>
             </div>
@@ -37,6 +32,7 @@
             </div>
 
 	        <button ng-click="toMyLibrary()">My Library</button>
+            <button ng-click="manualAdd()">Manual Addition</button>
 
             <p>  
                 <ul ng-repeat="doc in docs track by $index">
@@ -44,7 +40,6 @@
                     <p>{{ doc.title }}</p>
                     <!-- Add Remove Buttons passing in selected book from DOM -->
                     <button ng-click="addBook(doc)">Add this Book to your Library</button>
-                    <button ng-click="removeBook(doc)">Remove this Book from Library</button>
                     <hr>
                 </ul>
                     </div>    
