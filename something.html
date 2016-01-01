@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+        <script src="lib/bower_components/angular/angular.js"></script>
+        <script src="something.js"></script>
+  </head>
+
+  <body ng-controller="SuperCtrl">
+    <ul ng-repeat="entry in parsedEntries">
+        {{ entry['category'] }} <br />
+    </ul>
+  </body>
+  
+
+</html>

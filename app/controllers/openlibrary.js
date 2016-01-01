@@ -89,7 +89,6 @@ app.controller("openLibraryCtrl",
     },
 
     $scope.searchYear = function(){
-        console.log("year fire");
         var searchUrl = 'http://openlibrary.org/search?year=' + $scope.publish_year;
             $http.get(searchUrl)   
                 .then(function (response) {

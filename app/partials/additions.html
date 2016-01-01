@@ -41,12 +41,11 @@
 	<button ng-click="addManual()"> Add this Book to your Library</button>
 </div>
 
-	        <button ng-click="toMyLibrary()">My Library</button>
+<button ng-click="toMyLibrary()">My Library</button>
+
+<div>
+    	<button ng-model="parsedEntries" ng-click="importJSON(parsedEntries)">Import?</button>
+</div>
 
 
-<!-- 
-<div ng-app="" ng-init="firstName='John';lastName='Doe'">
-
-<p>The full name is: {{ firstName + " " + lastName }}</p>
- -->
 
