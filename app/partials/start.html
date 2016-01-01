@@ -39,14 +39,18 @@
 	        <button ng-click="toMyLibrary()">My Library</button>
 
             <p>  
-                <li ng-repeat="doc in docs">
-                    <div class="thisBook">    
-                        <p>{{ doc.author_name }}</p>
-                        <p>{{ doc.title }}</p>
-                        <p>{{ doc.language }}</p>
-                        <p>{{ doc.publish_year }}</p>
-                        <p>{{ doc.subject }}</p>
-                        <p>{{ doc.isbn }}</p>    
+                <ul ng-repeat="doc in docs track by $index">
+                <p>{{ doc.author }}</p>
+                <p>{{ doc.title }}</p>
+
+<!--                             <p>{{ doc }}</p>
+ -->
+                            <!-- <p>{{ finalString }}</p> -->
+                            
+    <!--                         <p>{{ doc.language }}</p>
+                            <p>{{ doc.publish_year }}</p>
+                            <p>{{ doc.subject }}</p>
+                            <p>{{ doc.isbn }}</p>    --> 
                         <button ng-click="addBook(doc)">Add this Book to your Library</button>
                         <button ng-click="removeBook(doc)">Remove this Book from Library</button>
                     </div>    
@@ -55,15 +59,9 @@
 
         </div>
 
-
-
     </body>
 
-
 </html>
-
-
-
 
 
 

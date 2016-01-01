@@ -1,6 +1,5 @@
 var app = angular.module("LibraryApp", ["ngRoute", "firebase"]);
 
-
 app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
@@ -18,9 +17,7 @@ app.config(['$routeProvider',
 
 
 
-
 // var app = angular.module("ShowApp", ["ngRoute", "firebase", "ui.bootstrap", 'ngAnimate']);
-
 
 // app.config(['$routeProvider',
 //   function($routeProvider) {

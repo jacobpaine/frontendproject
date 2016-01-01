@@ -1,2 +1,43 @@
 <div>My Library</div>
-<p> asjfbsdjkfbskjdbnfksjdnfkjsndflksdnglksd</p>
+<div ng-app="LibraryApp" ng-controller="myLibraryCtrl">
+
+	<button ng-click="toOpenLibrary()">To Open Library</button>
+
+	<div>
+
+		<div>
+			<input type="text" ng-model="myLibrary_title">
+			<button ng-click="searchMyLibrary_title(doc)">Search Titles in My Library</button>
+		</div>
+
+
+
+<label>Search: <input ng-model="searchText"></label>
+<table id="searchTextResults">
+  <tr ng-repeat="book in fullLibrary | filter:searchText">
+
+    <td>{{book}}</td>
+
+ 
+  </tr>
+</table>
+<hr>
+<!-- <label>Any: <input ng-model="search.$"></label> <br>
+<label>Name only <input ng-model="search.name"></label><br>
+<label>Phone only <input ng-model="search.phone"></label><br>
+<label>Equality <input type="checkbox" ng-model="strict"></label><br> -->
+<!-- <table id="searchObjResults">
+  <tr><th>Name</th><th>Phone</th></tr>
+  <tr ng-repeat="friendObj in friends | filter:search:strict">
+    <td>{{friendObj.name}}</td>
+    <td>{{friendObj.phone}}</td>
+  </tr>
+</table>
+ -->
+
+
+
+
+	</div>
+
+</div>
