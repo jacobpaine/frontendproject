@@ -23,15 +23,18 @@ app.controller("openLibraryCtrl",
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = JSON.stringify(proofMe[i]["author_name"]);
+                var isbnString = JSON.stringify(proofMe[i]["isbn"]);
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
                 authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
+                // isbnString = isbnString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 
                 //The information for each individual book is held in bookToDom obj.
+                // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     author: authorString,
-                    // isbn: proofMe[i]["isbn"],
+                    isbn: isbnString,
                     // publish_year: doc.publish_year,
                     title: proofMe[i]["title"]
                 };
@@ -67,7 +70,7 @@ app.controller("openLibraryCtrl",
                 //The information for each individual book is held in bookToDom obj.
                 var bookToDom = {    
                     // author: authorString,
-                    isbn: isbnString,
+                    // isbn: isbnString,
                     // publish_year: doc.publish_year,
                     title: proofMe[i]["title"]
                 };

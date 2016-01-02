@@ -38,6 +38,7 @@
                 <ul ng-repeat="doc in docs track by $index">
                     <p>{{ doc.author }}</p>
                     <p>{{ doc.title }}</p>
+                    <p>{{ doc.isbn }}</p>
                     <!-- Add Remove Buttons passing in selected book from DOM -->
                     <button ng-click="addBook(doc)">Add this Book to your Library</button>
                     <hr>

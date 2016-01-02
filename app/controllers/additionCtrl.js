@@ -5,15 +5,17 @@ app.controller("additionCtrl",
     var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
     var firebaseBookArray = $firebaseArray(firebaseBook);
 
+//Go search the Open Library for a title.
     $scope.toOpenLibrary = function() {
             $location.path('/start').replace();
     };
 
+//Go to Private Library.
     $scope.toMyLibrary = function() {
         $location.path('/mylibrary').replace();
     };
 
-
+//Manually add a book to the private Library
     $scope.addManual = function(doc){
 		var authorMan = $scope.author;
 		var titleMan = $scope.title;
@@ -33,6 +35,7 @@ app.controller("additionCtrl",
 
 
 //Controller code for getting from Google Sheets
+// Retrieve id (~7 digits e.g. ocwf700) from https://spreadsheets.google.com/feeds/worksheets/YOUR_SPREADSHEET_ID/private/full
     var url = 'https://spreadsheets.google.com/feeds/list/1U9JXkQ5ZDCXTTNvFZlcr9yc8-ehOc_PbF4o-b2IiEYg/ocwf700/public/values?alt=json'
     var parse = function(entry) {
       console.log(entry);
@@ -50,7 +53,6 @@ app.controller("additionCtrl",
       for (key in entries) {
         var content = entries[key];
         $scope.parsedEntries.push(content.gsx$_cn6ca.$t);
-        // $scope.isbnToApp = content.gsx$_cn6ca.$t;
       }
     });
 
@@ -64,24 +66,18 @@ app.controller("additionCtrl",
     	//Using $http.get to grab information from Open Library
     		var searchUrl = 'http://openlibrary.org/search?q=' + json[i];
             $http.get(searchUrl)   
-                .then(function (response) {
-        			// console.log("response", response.data.docs[0]);
-        			// console.log("response.data.docs[0].title", response.data.docs[0].title);
-        			// console.log("response.data.docs[0].author", response.data.docs[0].author_name[0]);
-        		
+                .then(function (response) {        		
         			var authorSheet = response.data.docs[0].author_name[0];
 					var titleSheet = response.data.docs[0].title;
-					// var isbnSheet = response.data.docs[0].isbn;
-					// var yearSheet = response.data.docs[0].year;
         			var bookToAddSheets = {
         				author: authorSheet,
         				title: titleSheet
         			}
         			firebaseBookArray.$add(bookToAddSheets);
-                    // console.log("response", response.data.docs[0].title);
+              $location.path('/mylibrary').replace();
+
            });
-    //             $scope.docs = booksToDom;
-    //             $scope.isbn = "";
+
     	};
 	};
 }]);

@@ -1,4 +1,47 @@
-<div>EDIT PAGE!</div>
+<div>Edit Page</div>
+<div ng-app="LibraryApp" ng-controller="bookEditCtrl">
+
+  <div ng-init="getBook()">
+  <div>
+    <div>Author</div>
+        <div>{{ book.authorString }}</div>
+    <div>Title</div>
+        <div>{{ book.titleString }}</div>
+    <div>ISBN</div>
+        <div>{{ book.isbn }}</div>
+    <div>Comments</div>
+        <div>{{ book.comments }}</div>
+  </div>
+
+<div>
+  <div>Author</div>
+      <input type="text" ng-model="editBook.authorString">
+        <div>{{ editBook.authorString }}</div>
+  <div>Title</div>
+      <input type="text" ng-model="editBook.titleString">
+      <div>{{ editBook.titleString }}</div>
+  <div>ISBN</div>
+      <input type="text" ng-model="editBook.isbn">
+      <div>{{ editBook.isbn }}</div>
+  <div>Comments</div>
+      <input type="text" ng-model="editBook.comments">
+      <div>{{ editBook.comments }}</div>
+
+    </div>
+    <button ng-click="updateBook(book)">Update this Book</button>
+</div>
+
+  <button ng-click="toMyLibrary()">My Library</button>
+  <button ng-click="toOpenLibrary()">To Open Library</button>
+
+</div>
+
+
+
+
+
+
+<!-- <div>EDIT PAGE!</div>
 
 <div>
     <button class="btn btn-primary" type="button" ng-click="logOut()">Log Out</button>
@@ -6,7 +49,7 @@
 </div>
 
 <div>Edit Show</div>
-
+ -->
 <!-- <div class="showTitle">
 	<div ng-repeat="show in slide"> -->
 <!-- 	show title, show img (img height/width), show text (text options), show slide number, *show timer,  -->
@@ -40,7 +83,7 @@
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div> -->
 <!-- ************** -->
-
+<!-- 
 <div id="myCarousel" class="carousel slide">
 	<div class="carousel-inner">
 	  <div style="height: 85px">
@@ -105,3 +148,4 @@
 <button class="btn" type="button" ng-click="addSlider(slide)">Add Slide</button>
 
 
+ -->

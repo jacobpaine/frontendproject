@@ -16,6 +16,11 @@ app.config(['$routeProvider',
       .when('/additions', {
         templateUrl: 'app/partials/additions.html',
         controller: 'additionCtrl'
+      }),
+    $routeProvider
+      .when('/edit', {
+        templateUrl: 'app/partials/edit.html',
+        controller: 'myLibraryCtrl'
       })
       .otherwise('/start');
   }]);
