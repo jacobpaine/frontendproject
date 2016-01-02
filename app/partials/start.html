@@ -8,13 +8,13 @@
        <div ng-app="LibraryApp" ng-controller="openLibraryCtrl">
             
             <div>
-                <input type="text" ng-model="isbn">
-                <button ng-click="searchIsbn()">Search Isbn</button>
+                <input type="text" ng-model="author">
+                <button ng-click="searchAuthor()">Search Author</button>
             </div>
 
             <div>
-                <input type="text" ng-model="author">
-                <button ng-click="searchAuthor()">Search Author</button>
+                <input type="text" ng-model="isbn">
+                <button ng-click="searchIsbn()">Search Isbn</button>
             </div>
 
             <div>
@@ -39,6 +39,7 @@
                     <p>{{ doc.author }}</p>
                     <p>{{ doc.title }}</p>
                     <p>{{ doc.isbn }}</p>
+                    <p>{{ doc.year }}</p>
                     <!-- Add Remove Buttons passing in selected book from DOM -->
                     <button ng-click="addBook(doc)">Add this Book to your Library</button>
                     <hr>

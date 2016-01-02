@@ -23,14 +23,19 @@ app.controller("myLibraryCtrl",
 	        for (i = 0; i < firebaseBookArray.length; i++){
 	   			var authorString = JSON.stringify(firebaseBookArray[i].author);
 	   			var titleString = firebaseBookArray[i].title;
-	        	var isbn = firebaseBookArray[i].isbn;
+	        	var isbn = JSON.stringify(firebaseBookArray[i].isbn);
+	        	var year = JSON.stringify(firebaseBookArray[i].year);
 	        	var comments = firebaseBookArray[i].comments;
 
 	        	console.log("firebaseBookArray", firebaseBookArray);
-	        	console.log("isbn", firebaseBookArray[i].isbn);
 				
+				// isbn = isbn.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 				authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-	        	myFullLibrary.push({authorString, titleString, isbn, comments});
+				isbn = isbn.replace(/[^,.?!()&a-zA-Z0-9 ]/g, "");
+				year = year.replace(/[^,.?!()&a-zA-Z0-9 ]/g, "");
+
+
+	        	myFullLibrary.push({authorString, titleString, isbn, year, comments});
         	};
     	$scope.fullLibrary = myFullLibrary;
     	};
@@ -38,12 +43,14 @@ app.controller("myLibraryCtrl",
 // Fire searchMyLibrary on page load.
 	$timeout($scope.searchMyLibrary)
 /////////////////////////////////////
+
     $scope.removeBook = function(){
         console.log("removedoc", this.book);
         var i;
         for (i = 0; i < firebaseBookArray.length; i++){
             if (firebaseBookArray[i].title === this.book.titleString && this.book.authorString){
                 firebaseBookArray.$remove(firebaseBookArray[i]);
+                //Immediately reload search after a removal.
         		$timeout($scope.searchMyLibrary)
 
             }

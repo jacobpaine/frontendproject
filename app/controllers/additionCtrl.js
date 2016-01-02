@@ -71,11 +71,13 @@ app.controller("additionCtrl",
             	var authorSheet = response.data.docs[0].author_name[0];
     					var titleSheet = response.data.docs[0].title;
               var isbnSheet = response.data.docs[0].isbn;
+              var yearSheet = response.data.docs[0].publish_year;
 
         			var bookToAddSheets = {
         				author: authorSheet,
         				title: titleSheet,
-                isbn: isbnSheet
+                isbn: isbnSheet,
+                year: yearSheet
         			}
         			firebaseBookArray.$add(bookToAddSheets);
               $location.path('/mylibrary').replace();
