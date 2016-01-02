@@ -11,6 +11,7 @@ app.controller("openLibraryCtrl",
         var proofMe;
         var i;
         var booksToDom = [];
+        var theVoid = [];
             //Using $http.get to grab information from Open Library
             $http.get(searchUrl)   
                 .then(function (response) {
@@ -28,16 +29,24 @@ app.controller("openLibraryCtrl",
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
                 authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-                // isbnString = isbnString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
                 
+                 if (isbnString === undefined){
+                    theVoid.push(isbnString);
+                    };
+
+                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"]
+                    year: "Year published: " + proofMe[i]["publish_year"],
+                    img: image
                 };
+
+                console.log("bookToDom", bookToDom);
                 booksToDom.push(bookToDom);
            };
                 $scope.docs = booksToDom;
@@ -50,6 +59,7 @@ app.controller("openLibraryCtrl",
         var proofMe;
         var i;
         var booksToDom = [];
+        var theVoid = [];
             //Using $http.get to grab information from Open Library
             $http.get(searchUrl)   
                 .then(function (response) {
@@ -67,13 +77,21 @@ app.controller("openLibraryCtrl",
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
                 authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
+           
+                 if (isbnString === undefined){
+                    theVoid.push(isbnString);
+                    };
+
+                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
 
                 //The information for each individual book is held in bookToDom obj.
+                // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"]
+                    year: "Year published: " + proofMe[i]["publish_year"],
+                    img: image
                 };
                 booksToDom.push(bookToDom);
            };
@@ -101,7 +119,6 @@ app.controller("openLibraryCtrl",
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = String(proofMe[i]["author_name"]);
-                var other = JSON.stringify(proofMe[i]["author_name"]);
                 var isbnString = JSON.stringify(proofMe[i]["isbn"]);
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
@@ -117,12 +134,16 @@ app.controller("openLibraryCtrl",
                 } else {
                     isbnString = String(isbnString.replace(/[^,.?!()&a-zA-Z0-9 ]/g, ""));
                 };
+                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+
                 //The information for each individual book is held in bookToDom obj.
+                // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"]
+                    year: "Year published: " + proofMe[i]["publish_year"],
+                    img: image
                 };
                 booksToDom.push(bookToDom);
            };
@@ -166,12 +187,17 @@ app.controller("openLibraryCtrl",
                 } else {
                     isbnString = String(isbnString.replace(/[^,.?!()&a-zA-Z0-9 ]/g, ""));
                 };
+
+                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+
                 //The information for each individual book is held in bookToDom obj.
+                // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"]
+                    year: "Year published: " + proofMe[i]["publish_year"],
+                    img: image
                 };
                 booksToDom.push(bookToDom);
            };

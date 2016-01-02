@@ -40,6 +40,7 @@
                     <p>{{ doc.title }}</p>
                     <p>{{ doc.isbn }}</p>
                     <p>{{ doc.year }}</p>
+                    <img src="{{ doc.img }}">
                     <!-- Add Remove Buttons passing in selected book from DOM -->
                     <button ng-click="addBook(doc)">Add this Book to your Library</button>
                     <hr>
