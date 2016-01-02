@@ -13,23 +13,28 @@
         <div>{{ book.comments }}</div>
   </div>
 
-<div>
+<form name="myForm">
   <div>Author</div>
-      <input type="text" ng-model="editBook.authorString">
+      <input type="text" ng-model="editBook.authorString" placeholder="{{book.authorString}}" ng-required="!(editBook.author.length || editBook.title.length)">
         <div>{{ editBook.authorString }}</div>
+  
   <div>Title</div>
-      <input type="text" ng-model="editBook.titleString">
+      <input type="text" ng-model="editBook.titleString" placeholder="{{book.titleString}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.titleString }}</div>
+  
   <div>ISBN</div>
-      <input type="text" ng-model="editBook.isbn">
+      <input type="text" ng-model="editBook.isbn" placeholder="{{book.isbn}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.isbn }}</div>
+  
   <div>Comments</div>
-      <input type="text" ng-model="editBook.comments">
+      <input type="text" ng-model="editBook.comments" placeholder="{{book.comments}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.comments }}</div>
 
     </div>
-    <button ng-click="updateBook(book)">Update this Book</button>
-</div>
+
+
+    <button ng-click="updateBook(book)" ng-disabled="!myForm.$valid">Update this Book</button>
+</form>
 
   <button ng-click="toMyLibrary()">My Library</button>
   <button ng-click="toOpenLibrary()">To Open Library</button>

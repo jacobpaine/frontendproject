@@ -26,6 +26,9 @@ app.controller("myLibraryCtrl",
 	        	var isbn = firebaseBookArray[i].isbn;
 	        	var comments = firebaseBookArray[i].comments;
 
+	        	console.log("firebaseBookArray", firebaseBookArray);
+	        	console.log("isbn", firebaseBookArray[i].isbn);
+				
 				authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 	        	myFullLibrary.push({authorString, titleString, isbn, comments});
         	};
@@ -41,8 +44,10 @@ app.controller("myLibraryCtrl",
         for (i = 0; i < firebaseBookArray.length; i++){
             if (firebaseBookArray[i].title === this.book.titleString && this.book.authorString){
                 firebaseBookArray.$remove(firebaseBookArray[i]);
+        		$timeout($scope.searchMyLibrary)
+
             }
+
         };
-	searchMyLibrary_title();
     };
 }]);

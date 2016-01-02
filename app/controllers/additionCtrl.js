@@ -66,12 +66,16 @@ app.controller("additionCtrl",
     	//Using $http.get to grab information from Open Library
     		var searchUrl = 'http://openlibrary.org/search?q=' + json[i];
             $http.get(searchUrl)   
-                .then(function (response) {        		
-        			var authorSheet = response.data.docs[0].author_name[0];
-					var titleSheet = response.data.docs[0].title;
+                .then(function (response) {
+                console.log("resposne", response);        		
+            	var authorSheet = response.data.docs[0].author_name[0];
+    					var titleSheet = response.data.docs[0].title;
+              var isbnSheet = response.data.docs[0].isbn;
+
         			var bookToAddSheets = {
         				author: authorSheet,
-        				title: titleSheet
+        				title: titleSheet,
+                isbn: isbnSheet
         			}
         			firebaseBookArray.$add(bookToAddSheets);
               $location.path('/mylibrary').replace();
