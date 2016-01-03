@@ -30,7 +30,7 @@ app.controller("additionCtrl",
           "isbn": {"isbn": isbnMan},
           "year": {"year": yearMan},
           "comments": {"comments": commentsMan},
-          "loc": {"loc": locMan},
+          "location": {"location": locMan},
         };
 
 
@@ -88,7 +88,7 @@ app.controller("additionCtrl",
                 isbn: isbnSheet,
                 year: yearSheet,
                 "comments": {"comments": comments},
-                "loc": {"loc": loc}
+                "location": {"location": loc}
         			}
 
               firebaseBook.push(bookToAddSheets);

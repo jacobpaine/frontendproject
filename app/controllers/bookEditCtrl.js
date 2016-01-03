@@ -24,59 +24,83 @@ app.controller("bookEditCtrl",
 
 
     $scope.updateBook = function(thisBook) {
-
 			//Let's make sure this is the right book.
             for (i = 0; i < firebaseBookArray.length; i++){
-console.log("firebaseBookArray[i].author", firebaseBookArray[i].author);
-console.log("thisBook.authorString", thisBook.authorString);
+                //Let's define variables for object binding.
+				var arrayId = firebaseBookArray[i].$id;
+				
+				var someBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
+				
+				var firebaseAuthor = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId +"/author/"); 
+				var firebaseTitle = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/title/"); 
+				var firebaseIsbn = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/isbn/"); 
+				var firebaseYear = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/year/"); 
+				var firebaseComments = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/comments/"); 
+				var firebaseLoc = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/loc/"); 
+            	
+				var someBookFireObj = $firebaseObject(someBook);
 
-            if (firebaseBookArray[i].author ===  thisBook.authorString){
-            	if (firebaseBookArray[i].title === thisBook.titleString){
+				var objAuthor = $firebaseObject(firebaseAuthor);
+				var objTitle = $firebaseObject(firebaseTitle);
+				var objIsbn = $firebaseObject(firebaseIsbn);
+				var objYear = $firebaseObject(firebaseYear);
+				var objComments = $firebaseObject(firebaseComments);
+				var objLoc = $firebaseObject(firebaseLoc);
 
-	                //Let's define variables for object binding.
-					var arrayId = firebaseBookArray[i].$id;
-					var firebaseAuthor = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId); 
-					var firebaseTitle = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId); 
-					var firebaseIsbn = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/isbn/"); 
-					var firebaseComments = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/comments/"); 
+					//In order to get the value from the Firebase Object, you have to load it first.
+			        // console.log("I am the random book key fro FB", key);
+    			someBookFireObj.$loaded().then(function() {
+			    	angular.forEach(someBookFireObj, function(value, key) {
+			    		if (value.author[0] === thisBook.authorString){
+			    			if (value.title['title'] === thisBook.titleString){
 
-					var objIsbn = $firebaseObject(firebaseIsbn);
-					var objComments = $firebaseObject(firebaseComments);
-
-					// Three-way data binding!!! Author
-					objComments.$bindTo($scope, "author").then(function() {
-					  console.log("what was there", $scope.author); 
-					  firebaseAuthor.set({ Author: $scope.editBook.authorString }); 
-					});
-
-					// Three-way data binding!!! Title
-					objComments.$bindTo($scope, "title").then(function() {
-					  console.log("what was there", $scope.title); 
-					  firebaseTitle.set({ Title: $scope.editBook.titleString }); 
-					});
-
-					// Three-way data binding!!! ISBN
-					objIsbn.$bindTo($scope, "isbn").then(function() {
-					  console.log("what was there", $scope.isbn); 
-					  firebaseIsbn.set({ ISBN: $scope.editBook.isbn }); 
-					});
-
-					// Three-way data binding!!! Comments
-					objComments.$bindTo($scope, "comments").then(function() {
-					  console.log("what was there", $scope.comments); 
-					  firebaseComments.set({ Comments: $scope.editBook.comments }); 
-					});
+								// Three-way data binding!!! Author
+								objAuthor.$bindTo($scope, "authorString").then(function(unbind) {
+								  firebaseAuthor.set({ Author: $scope.editBook.authorString });
+								  unbind(objAuthor); 
+								});
+			    			};
+			    		};
+			    	});
+			    });
 
 
-            	}	
-            $location.path('/mylibrary').replace();
+    // 			someBookFireObj.$loaded().then(function() {
+			 //    	angular.forEach(someBookFireObj, function(value, key) {
+			 //    		if (value.author[0] === thisBook.authorString){
+			 //    			if (value.title['title'] === thisBook.titleString){
+
+				// 				// // Three-way data binding!!! Title
+				// 				objTitle.$bindTo($scope, "title").then(function() {
+				// 				  firebaseTitle.set({ Title: $scope.editBook.titleString }); 
+				// 				});
+
+				// 				// // Three-way data binding!!! ISBN
+				// 				objIsbn.$bindTo($scope, "isbn").then(function() {
+				// 				  firebaseIsbn.set({ ISBN: $scope.editBook.isbn }); 
+				// 				});
+
+				// 				// // Three-way data binding!!! Year
+				// 				objYear.$bindTo($scope, "year").then(function() {
+				// 				  firebaseYear.set({ Year: $scope.editBook.year }); 
+				// 				});
+
+				// 				// // Three-way data binding!!! Comments
+				// 				objComments.$bindTo($scope, "comments").then(function() {
+				// 				  firebaseComments.set({ Comments: $scope.editBook.comments }); 
+				// 				});
+
+				// 				// // Three-way data binding!!! Comments
+				// 				objLoc.$bindTo($scope, "loc").then(function() {
+				// 				  firebaseLoc.set({ Comments: $scope.editBook.loc }); 
+				// 				});
+			 //    			};
+			 //    		};
+			 //       });
+				// });			     
+            }//End update command.	
+            // $location.path('/mylibrary').replace();
             // $timeout($scope.searchMyLibrary)
-            }	
-    	};
-
-
-    };
-
-
+        }  
 }]);
 

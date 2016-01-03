@@ -9,8 +9,12 @@
         <div>{{ book.titleString }}</div>
     <div>ISBN</div>
         <div>{{ book.isbn }}</div>
+    <div>Year Published</div>
+        <div>{{ book.year }}</div>
     <div>Comments</div>
         <div>{{ book.comments }}</div>
+    <div>Location</div>
+        <div>{{ book.location }}</div>
   </div>
 
 <form name="myForm">
@@ -26,11 +30,19 @@
       <input type="text" ng-model="editBook.isbn" placeholder="{{book.isbn}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.isbn }}</div>
   
+  <div>Published year</div>
+      <input type="text" ng-model="editBook.year" placeholder="{{book.year}}" ng-required="!(editBook.author.length || editBook.title.length)">
+      <div>{{ editBook.year }}</div>
+  
   <div>Comments</div>
       <input type="text" ng-model="editBook.comments" placeholder="{{book.comments}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.comments }}</div>
+  
+  <div>Location</div>
+      <input type="text" ng-model="editBook.loc" placeholder="{{book.loc}}" ng-required="!(editBook.author.length || editBook.title.length)">
+      <div>{{ editBook.loc }}</div>
 
-    </div>
+
 
 
     <button ng-click="updateBook(book)" ng-disabled="!myForm.$valid">Update this Book</button>
