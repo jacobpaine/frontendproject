@@ -18,23 +18,30 @@ app.controller("openLibraryCtrl",
                     console.log("response", response);
               //The response parameter is held in the proofMe variable.
               proofMe = response.data.docs;
-
               //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
-
+                var idString = proofMe[i].cover_i;
                 //Only strings can use the replace method. Stringify!
-                var authorString = JSON.stringify(proofMe[i]["author_name"]);
+                var image = "http://covers.openlibrary.org/b/id/" + idString + "-S.jpg";
                 var isbnString = proofMe[i]["isbn"];
+                
+                // if (isbnString === undefined){
+                //     theVoid.push(isbnString);
+                //     } else {
+                //     isbnString = isbnString.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
+                //     isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+                //     };
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
+                var authorString = JSON.stringify(proofMe[i]["author_name"]);
                 authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-                
-                 if (isbnString === undefined){
-                    theVoid.push(isbnString);
-                    };
+                authorString = authorString.slice(/[ ]*,[ ]*|[ ]+/g, ' ');
 
-                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+                var year = JSON.stringify(proofMe[i]["publish_year"]);
+                year = year.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
+                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+                
 
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
@@ -42,7 +49,7 @@ app.controller("openLibraryCtrl",
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"],
+                    year: "Year published: " + year,
                     img: image
                 };
 
@@ -72,7 +79,14 @@ app.controller("openLibraryCtrl",
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = JSON.stringify(proofMe[i]["author_name"]);
-                var isbnString = proofMe[i]["isbn"];
+                authorString = authorString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+
+                var isbnString = proofMe[i]["isbn"][i];
+                isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+
+                var year = JSON.stringify(proofMe[i]["publish_year"]);
+                year = year.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
+                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
@@ -90,7 +104,7 @@ app.controller("openLibraryCtrl",
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"],
+                    year: "Year published: " + year,
                     img: image
                 };
                 booksToDom.push(bookToDom);
@@ -119,7 +133,12 @@ app.controller("openLibraryCtrl",
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = String(proofMe[i]["author_name"]);
+
                 var isbnString = JSON.stringify(proofMe[i]["isbn"]);
+                isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+
+                var year = proofMe[i]["publish_year"];
+                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
@@ -142,7 +161,7 @@ app.controller("openLibraryCtrl",
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"],
+                    year: "Year published: " + year,
                     img: image
                 };
                 booksToDom.push(bookToDom);
@@ -171,8 +190,13 @@ app.controller("openLibraryCtrl",
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = String(proofMe[i]["author_name"]);
-                var other = JSON.stringify(proofMe[i]["author_name"]);
+
                 var isbnString = JSON.stringify(proofMe[i]["isbn"]);
+                isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+
+
+                var year = proofMe[i]["publish_year"];
+                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
@@ -196,7 +220,7 @@ app.controller("openLibraryCtrl",
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + proofMe[i]["publish_year"],
+                    year: "Year published: " + year,
                     img: image
                 };
                 booksToDom.push(bookToDom);

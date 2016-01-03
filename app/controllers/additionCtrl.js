@@ -3,16 +3,17 @@ app.controller("additionCtrl",
     function($scope, $http, $firebaseArray, $location, $timeout) {
     
     var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
-    var firebaseBookArray = $firebaseArray(firebaseBook);
 
+
+    var firebaseBookArray = $firebaseArray(firebaseBook);
 //Go search the Open Library for a title.
     $scope.toOpenLibrary = function() {
-            $location.path('/start').replace();
+      $location.path('/start').replace();
     };
 
 //Go to Private Library.
     $scope.toMyLibrary = function() {
-        $location.path('/mylibrary').replace();
+      $location.path('/mylibrary').replace();
     };
 
 //Manually add a book to the private Library
@@ -21,14 +22,20 @@ app.controller("additionCtrl",
 		var titleMan = $scope.title;
 		var isbnMan = $scope.isbn;
 		var yearMan = $scope.year;
-		var locationMan = $scope.location; 
+    var commentsMan = $scope.comments;
+		var locMan = $scope.loc; 
         var bookToAddMan = {    
-          author: authorMan,
-          title: titleMan,
-          isbn: isbnMan,
-          year: yearMan,
-          location: locationMan
+          "author": {"author": authorMan},
+          "title": {"title": titleMan},
+          "isbn": {"isbn": isbnMan},
+          "year": {"year": yearMan},
+          "comments": {"comments": commentsMan},
+          "loc": {"loc": locMan},
         };
+
+
+
+
         console.log("bookToAddMan", bookToAddMan);
         firebaseBookArray.$add(bookToAddMan);
     };
@@ -68,18 +75,23 @@ app.controller("additionCtrl",
             $http.get(searchUrl)   
                 .then(function (response) {
                 console.log("resposne", response);        		
-            	var authorSheet = response.data.docs[0].author_name[0];
+            	var authorSheet = response.data.docs[0].author_name;
     					var titleSheet = response.data.docs[0].title;
               var isbnSheet = response.data.docs[0].isbn;
               var yearSheet = response.data.docs[0].publish_year;
+              var loc = "No available location.";
+              var comments = "No comments.";
 
         			var bookToAddSheets = {
-        				author: authorSheet,
-        				title: titleSheet,
+        				author: authorSheet, 
+                "title": {"title": titleSheet},
                 isbn: isbnSheet,
-                year: yearSheet
+                year: yearSheet,
+                "comments": {"comments": comments},
+                "loc": {"loc": loc}
         			}
-        			firebaseBookArray.$add(bookToAddSheets);
+
+              firebaseBook.push(bookToAddSheets);
               $location.path('/mylibrary').replace();
 
            });
@@ -87,4 +99,13 @@ app.controller("additionCtrl",
     	};
 	};
 }]);
+
+// var usersRef = new Firebase('https://samplechat.firebaseio-demo.com/users');
+// var fredRef = usersRef.child('fred');
+// var fredFirstNameRef = fredRef.child('name/first');
+// var path = fredFirstNameRef.toString();
+    // var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
+    // var firebaseBookArray = $firebaseArray(firebaseBook);
+
+
 

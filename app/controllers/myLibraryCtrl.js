@@ -23,19 +23,24 @@ app.controller("myLibraryCtrl",
 	        for (i = 0; i < firebaseBookArray.length; i++){
 	   			var authorString = JSON.stringify(firebaseBookArray[i].author);
 	   			var titleString = firebaseBookArray[i].title;
-	        	var isbn = JSON.stringify(firebaseBookArray[i].isbn);
+	        	
+	        	var isbn = firebaseBookArray[i].isbn;
+	        	// isbn = isbn.replace(/,/g, ', ');
+	        	
 	        	var year = JSON.stringify(firebaseBookArray[i].year);
+	        	// year = year.replace(/,/g, ', ');
+	        	
 	        	var comments = firebaseBookArray[i].comments;
 
-	        	console.log("firebaseBookArray", firebaseBookArray);
+	        	var loc = firebaseBookArray[i].loc;
 				
 				// isbn = isbn.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 				authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-				isbn = isbn.replace(/[^,.?!()&a-zA-Z0-9 ]/g, "");
-				year = year.replace(/[^,.?!()&a-zA-Z0-9 ]/g, "");
+				// isbn = isbn.replace(/[^,.?!()&b-zA-Z0-9 ]/g, "");
+				// year = year.replace(/[^,.?!()&a-zA-Z0-9 ]/g, "");
 
-
-	        	myFullLibrary.push({authorString, titleString, isbn, year, comments});
+				
+	        	myFullLibrary.push({authorString, titleString, isbn, year, comments, loc});
         	};
     	$scope.fullLibrary = myFullLibrary;
     	};
