@@ -18,43 +18,68 @@ app.controller("myLibraryCtrl",
         $location.path('/edit').replace();
     };
 
-    $scope.searchMyLibrary = function(doc){
+    $scope.searchMyLibrary = function(){
     	var myFullLibrary = [];
-	        for (i = 0; i < firebaseBookArray.length; i++){
-	   			
-	   			var authorString = firebaseBookArray[i].author[0];
 
-	   			var titleString = firebaseBookArray[i].title;
-	   			for(var c in titleString){
-					titleString = titleString[c];
-				};	
+	    for (var i = 0; i < firebaseBookArray.length; i++){   
+	   	var authorString = firebaseBookArray[i].author;
+	   	console.log("authorString!!!", authorString);
 
-	        	var isbn = JSON.stringify(firebaseBookArray[i].isbn);
-	        	isbn = isbn.replace("[", "").replace(/\"/g, "").replace("]", "");
-	        	isbn = isbn.replace(/,/g, ', ');
-				// isbn = isbn.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
+
+		angular.forEach(authorString, function(value, key) {
+			console.log("authorString.value", value);
+	    $scope.author = value;
+
+
+		});
+
+    			var book = {
+	    			// title: $scope.titleString = firebaseBookArray[i].title,
+	    			// // isbn: $scope.isbnString = firebaseBookArray[i].isbn
+	    			// year:  $scope.year = firebaseBookArray[i].year,
+	    			// comments: $scope.comments = firebaseBookArray[i].comments,
+	    			// location: $scope.location = firebaseBookArray[i].location
+    				}
+
+	   			$scope.book = book;
+    			};	
+	   		$scope.arrayToString = function(string){
+        		return string.join(", ");
+    		};
+	   		}
+				// authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
+
+				// console.log("authorString", authorString);
+	   // 			var titleString = firebaseBookArray[i].title;
+	   // 			for(var c in titleString){
+				// 	titleString = titleString[c];
+				// };	
+
+	   //      	var isbn = JSON.stringify(firebaseBookArray[i].isbn);
+	   //      	isbn = isbn.replace("[", "").replace(/\"/g, "").replace("]", "");
+	   //      	isbn = isbn.replace(/,/g, ', ');
+				// // isbn = isbn.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 	        	
-	        	var year = firebaseBookArray[i].year[0];
+	   //      	var year = firebaseBookArray[i].year[0];
 
-				var comments = firebaseBookArray[i].comments;	
-	        	for(var a in comments){
-					comments = comments[a];
-				};				
+				// var comments = firebaseBookArray[i].comments;	
+	   //      	for(var a in comments){
+				// 	comments = comments[a];
+				// };				
 
-	        	var loc = firebaseBookArray[i].loc;
-	        	for(var b in loc){
-					loc =loc[b];
-				};
+	   //      	var loc = firebaseBookArray[i].loc;
+	   //      	for(var b in loc){
+				// 	loc =loc[b];
+				// };
+			
 				
-
-				
-	        	myFullLibrary.push({authorString, titleString, isbn, year, comments, loc});
-        	};
-    	$scope.fullLibrary = myFullLibrary;
-    	};
+	   //      	myFullLibrary.push({authorString, titleString, isbn, year, comments, loc});
+        
+    	// $scope.fullLibrary = myFullLibrary
+    	
 
 // Fire searchMyLibrary on page load.
-	$timeout($scope.searchMyLibrary)
+	// $timeout($scope.searchMyLibrary)
 /////////////////////////////////////
 
     $scope.removeBook = function(){

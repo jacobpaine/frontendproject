@@ -1,9 +1,8 @@
 app.controller("additionCtrl",
-    ["$scope", "$http", "$firebaseArray", "$location", "$timeout",
-    function($scope, $http, $firebaseArray, $location, $timeout) {
+    ["$scope", "$http", "$firebaseArray", "$location", "$timeout", "$firebaseObject",
+    function($scope, $http, $firebaseArray, $location, $timeout, $firebaseObject) {
     
     var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
-
 
     var firebaseBookArray = $firebaseArray(firebaseBook);
 //Go search the Open Library for a title.
@@ -75,23 +74,25 @@ app.controller("additionCtrl",
             $http.get(searchUrl)   
                 .then(function (response) {
                 console.log("resposne", response);        		
-            	var authorSheet = response.data.docs[0].author_name;
+            	var author = response.data.docs[0].author_name;
     					var titleSheet = response.data.docs[0].title;
               var isbnSheet = response.data.docs[0].isbn;
               var yearSheet = response.data.docs[0].publish_year;
               var loc = "No available location.";
               var comments = "No comments.";
 
+
+
         			var bookToAddSheets = {
-        				author: authorSheet, 
+        				"author": author, 
                 "title": {"title": titleSheet},
-                isbn: isbnSheet,
-                year: yearSheet,
+                "isbn": isbnSheet,
+                "year": yearSheet,
                 "comments": {"comments": comments},
                 "location": {"location": loc}
         			}
 
-              firebaseBook.push(bookToAddSheets);
+              firebaseBookArray.$add(bookToAddSheets);
               $location.path('/mylibrary').replace();
 
            });
@@ -99,13 +100,3 @@ app.controller("additionCtrl",
     	};
 	};
 }]);
-
-// var usersRef = new Firebase('https://samplechat.firebaseio-demo.com/users');
-// var fredRef = usersRef.child('fred');
-// var fredFirstNameRef = fredRef.child('name/first');
-// var path = fredFirstNameRef.toString();
-    // var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
-    // var firebaseBookArray = $firebaseArray(firebaseBook);
-
-
-

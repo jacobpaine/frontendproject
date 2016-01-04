@@ -32,37 +32,61 @@ app.controller("bookEditCtrl",
 				var someBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
 				
 				var firebaseAuthor = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId +"/author/"); 
-				var firebaseTitle = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/title/"); 
-				var firebaseIsbn = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/isbn/"); 
-				var firebaseYear = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/year/"); 
-				var firebaseComments = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/comments/"); 
-				var firebaseLoc = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/loc/"); 
+				// var firebaseTitle = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/title/"); 
+				// var firebaseIsbn = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/isbn/"); 
+				// var firebaseYear = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/year/"); 
+				// var firebaseComments = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/comments/"); 
+				// var firebaseLoc = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/loc/"); 
             	
 				var someBookFireObj = $firebaseObject(someBook);
 
 				var objAuthor = $firebaseObject(firebaseAuthor);
-				var objTitle = $firebaseObject(firebaseTitle);
-				var objIsbn = $firebaseObject(firebaseIsbn);
-				var objYear = $firebaseObject(firebaseYear);
-				var objComments = $firebaseObject(firebaseComments);
-				var objLoc = $firebaseObject(firebaseLoc);
+				// var objTitle = $firebaseObject(firebaseTitle);
+				// var objIsbn = $firebaseObject(firebaseIsbn);
+				// var objYear = $firebaseObject(firebaseYear);
+				// var objComments = $firebaseObject(firebaseComments);
+				// var objLoc = $firebaseObject(firebaseLoc);
+
+
+					var ref = firebaseAuthor; // assume value here is { foo: "bar" }
+					var obj = $firebaseObject(ref);
+
+    			someBookFireObj.$loaded().then(function() {
+			    	angular.forEach(someBookFireObj, function(value, key) {
+		    		if (value.author[0] === thisBook.authorString){
+		    			if (value.title['title'] === thisBook.titleString){
+		    				console.log("value", value);
+		    				console.log("key", key);
+							// obj.$bindTo($scope, "data").then(function() {
+							//   console.log($scope.data); // { foo: "bar" }
+							//   $scope.data.foo = "b";  // will be saved to the database
+							//   ref.set({ Author: "b" });  // this would update the database and $scope.data
+							// });
+						}
+					};
+				});
+			});
+    	}
+    }
+}]);
+
+
 
 					//In order to get the value from the Firebase Object, you have to load it first.
 			        // console.log("I am the random book key fro FB", key);
-    			someBookFireObj.$loaded().then(function() {
-			    	angular.forEach(someBookFireObj, function(value, key) {
-			    		if (value.author[0] === thisBook.authorString){
-			    			if (value.title['title'] === thisBook.titleString){
+    			// someBookFireObj.$loaded().then(function() {
+			    // 	angular.forEach(someBookFireObj, function(value, key) {
+			    // 		if (value.author[0] === thisBook.authorString){
+			    // 			if (value.title['title'] === thisBook.titleString){
 
-								// Three-way data binding!!! Author
-								objAuthor.$bindTo($scope, "authorString").then(function(unbind) {
-								  firebaseAuthor.set({ Author: $scope.editBook.authorString });
-								  unbind(objAuthor); 
-								});
-			    			};
-			    		};
-			    	});
-			    });
+							// 	// Three-way data binding!!! Author
+							// 	objAuthor.$bindTo($scope, "authorString").then(function() {
+							// 	  firebaseAuthor.$set({ Author: $scope.editBook.authorString });
+							// 	});
+			    // 			};
+			    // 		};
+			    // 	});
+			    // });
 
 
     // 			someBookFireObj.$loaded().then(function() {
@@ -98,9 +122,8 @@ app.controller("bookEditCtrl",
 			 //    		};
 			 //       });
 				// });			     
-            }//End update command.	
+            // })	//End update command.	
             // $location.path('/mylibrary').replace();
             // $timeout($scope.searchMyLibrary)
-        }  
-}]);
+
 
