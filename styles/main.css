@@ -1,6 +1,6 @@
-.additionsButton{
+/*.additionsButton{
 
-}
+}*/
 
 .inputCardBox{
     border: 2px solid black;
@@ -10,22 +10,32 @@
 }
 
 
-.editNow{
+/*.editNow{
     border: 2px solid black;
-    width: 60%;
+    width: 40%;
     margin: 5px;
-}
+}*/
 
 .editNowHead{
     font-weight: bold;
-    padding: 3px;
     margin: 5px;
+    padding-left: 10px;
+
 }
+
+.editNowItem{
+    margin: 5px;
+    padding-left: 10px;
+
+}
+
+
+
 
 .editForm{
   border: 2px solid black;
-  width: 60%;
-  padding: 3px;
+  width: 30%;
+  padding: 5px;
   margin: 5px;
 
 }
@@ -115,13 +125,21 @@
   padding: 8px;
 }
 
+.editBookBox{
+  margin: 2px;
+  border: 2px solid black;
+  padding: 8px;
+  height: 60%;
+  width: 25%;
+}
+
+
 .bookBox{
   margin: 2px;
   border: 2px solid black;
   padding: 8px;
-  height: 30%;
+  height: 60%;
   width: 25%;
-  overflow: hidden;
 }
 
 .bookImage{

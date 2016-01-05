@@ -30,7 +30,7 @@ app.controller("additionCtrl",
           // "isbn": {"isbn": isbnMan},
           // "year": {"year": yearMan},
           "comments": {"comments": commentsMan},
-          "location": {"location": locMan}
+          "location": {"location": $scope.loc}
 
           };
 

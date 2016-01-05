@@ -4,11 +4,11 @@
   <div class="editNow">
     <div class="editNowHead">Author:</div>
         <div ng-repeat="item in book">
-          <div>{{ item.author }}</div>
+          <div class="editNowItem">{{ item.author }}</div>
         </div>  
     <div class="editNowHead">Title:</div>
         <div ng-repeat="item in book">
-          <div>{{ item.title }}</div>
+          <div class="editNowItem">{{ item.title }}</div>
         </div>  
 <!--     <div>ISBN</div>
  --><!--         <div>{{ book.isbn }}</div>
@@ -16,11 +16,11 @@
         <div>{{ book.year }}</div> -->
     <div class="editNowHead">Comments:</div>
         <div ng-repeat="item in book">
-          <div>{{ item.comments }}</div>
+          <div class="editNowItem">{{ item.comments }}</div>
         </div> 
     <div class="editNowHead">Location:</div>
         <div ng-repeat="item in book">
-          <div>{{ item.location }}</div>
+          <div class="editNowItem">{{ item.location }}</div>
         </div> 
   </div>
 
@@ -44,11 +44,11 @@
   
   <div class="editComments">Comments</div>
       <input type="text" ng-model="editBook.comments" placeholder="{{book.comments.comments}}" ng-required="!(editBook.author.length || editBook.title.length)">
-      <div>{{ editBook.comments }}</div>
+      <!-- <div>{{ editBook.comments }}</div> -->
   
   <div class="editLocation">Location</div>
       <input type="text" ng-model="editBook.loc" placeholder="{{book.location.location}}" ng-required="!(editBook.author.length || editBook.title.length)">
-      <div>{{ editBook.loc }}</div>
+      <!-- <div>{{ editBook.loc }}</div> -->
 
     <button class="btn-default" ng-click="updateBook(book)" ng-disabled="!myForm.$valid">Update this Book</button>
 </form>

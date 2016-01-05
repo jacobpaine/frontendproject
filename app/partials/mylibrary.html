@@ -11,12 +11,12 @@
 			<div class= "searchBook">Search: <input ng-model="searchText"></div>
 				<table id="searchTextResults">
 					<div class="col-md-8 row bookBox" ng-repeat="book in myFullLibrary| filter:searchText">
-					<span class="bookImg"><img src="{{ book.image }}"></span>	
+					<!-- <span class="bookImg"><img src="{{ book.image }}"></span>	 -->
 					<p class ="bookTitle">{{book.title.title}}</p>
 					<p class ="bookAuthor">{{book.author.author}}</p>
 					<p>{{book.comments.comments}}</p>
 					<p>{{book.location.location}}</p>
-					
+
 
 			    	<button class="btn-default" ng-click="removeBook(book)">Remove this Book from Library</button>
 			    	<button class="btn-default" ng-click="goToEdit(book)"> Edit this Book in your Library</button>
