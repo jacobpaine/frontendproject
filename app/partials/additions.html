@@ -15,7 +15,7 @@
     <input type="text" ng-model="title">
 </div>
 
-<div>
+<!-- <div>
     <div>ISBN</div>
     <input type="text" ng-model="isbn">
 </div>
@@ -23,20 +23,26 @@
 <div>
     <div>Year</div>
     <input type="text" ng-model="year">
+</div> -->
+
+<div>
+    <div>Comments</div>
+    <input type="text" ng-model="comments">
 </div>
 
 <div>
     <div>Location</div>
-    <input type="text" ng-model="location">
+    <input type="text" ng-model="loc">
 </div>
 
 <hr>
 <div id="inputCard">
 	<div ng-model="author">Author: {{author}}</div>
 	<div ng-model="title">Title: {{title}}</div>
-	<div ng-model="isbn">ISBN: {{isbn}}</div>
-	<div ng-model="year">Year: {{year}}</div>
-	<div ng-model="location">Location: {{location}}</div>
+<!-- 	<div ng-model="isbn">ISBN: {{isbn}}</div>
+	<div ng-model="year">Year: {{year}}</div> -->
+    <div ng-model="comments">Comments: {{comments}}</div>
+	<div ng-model="location">Location: {{loc}}</div>
 		
 	<button ng-click="addManual()"> Add this Book to your Library</button>
 </div>

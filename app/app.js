@@ -20,7 +20,7 @@ app.config(['$routeProvider',
     $routeProvider
       .when('/edit', {
         templateUrl: 'app/partials/edit.html',
-        controller: 'myLibraryCtrl'
+        controller: 'bookEditCtrl'
       })
       .otherwise('/start');
   }]);

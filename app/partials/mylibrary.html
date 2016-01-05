@@ -8,31 +8,30 @@
 			<button ng-click="searchMyLibrary()">All Titles in My Library</button>
 			<button ng-click="manualAdd()">Manual Addition</button>
 		</div>
-			<label>Search: <input ng-model="searchText"></label>
-			<table id="searchTextResults">
-			  <div ng-repeat="book in fullLibrary | filter: searchText track by $index">
+<!-- 			  <div ng-repeat="book in fullLibrary | filter: searchText track by $index">
 			    	<p>{{ book.authorString }}</p>
 			    	<p>{{ book.titleString }}</p>
 			    	<p>{{ book.isbn }}</p>
 			    	<p>{{ book.year }}</p>
 			    	<p>{{ book.comments }}</p>
 			    	<p>{{ book.loc }}</p>
-			    	
-			    	<button ng-click="removeBook(book)">Remove this Book from Library</button>
-			    	<button ng-click="goToEdit(book)"> Edit this Book in your Library</button>
-
 			    	<hr>
-			  </div>
+			  </div> -->
 
-			<div ng-repeat="thing in author">
-				<p>{{author}}</p>
-				<div ng-repeat="item in thing">
+		<label>Search: <input ng-model="searchText"></label>
+		<div>
+			<table id="searchTextResults">
+				<div ng-repeat="book in myFullLibrary| filter:searchText">
+				<p>{{book.author.author}}</p>
+				<p>{{book.title.title}}</p>
+				<p>{{book.comments.comments}}</p>
+				<p>{{book.location.location}}</p>
+		    	<button ng-click="removeBook(book)">Remove this Book from Library</button>
+		    	<button ng-click="goToEdit(book)"> Edit this Book in your Library</button>
 				</div>
-			</div>
-
-
+		    	<hr>
 			</table>
-			<hr>
+		</div>
 
 	</div>
 

@@ -19,18 +19,22 @@ app.controller("additionCtrl",
     $scope.addManual = function(doc){
 		var authorMan = $scope.author;
 		var titleMan = $scope.title;
-		var isbnMan = $scope.isbn;
-		var yearMan = $scope.year;
+		// var isbnMan = $scope.isbn;
+		// var yearMan = $scope.year;
     var commentsMan = $scope.comments;
-		var locMan = $scope.loc; 
+		var locMan = $scope.loc;
+
         var bookToAddMan = {    
           "author": {"author": authorMan},
           "title": {"title": titleMan},
-          "isbn": {"isbn": isbnMan},
-          "year": {"year": yearMan},
+          // "isbn": {"isbn": isbnMan},
+          // "year": {"year": yearMan},
           "comments": {"comments": commentsMan},
-          "location": {"location": locMan},
-        };
+          "location": {"location": locMan}
+
+          };
+
+          $location.path('/mylibrary').replace();
 
 
 
@@ -66,6 +70,7 @@ app.controller("additionCtrl",
     $scope.importJSON = function(json){
         var i;
         var booksToDom = [];
+        console.log("json", json);
         //The response(json) parameter is held in the proofMe variable.
         //Looping over the length of proofMe to check every available title.
     	for (i = 0; i < json.length; i++){
@@ -73,30 +78,100 @@ app.controller("additionCtrl",
     		var searchUrl = 'http://openlibrary.org/search?q=' + json[i];
             $http.get(searchUrl)   
                 .then(function (response) {
-                console.log("resposne", response);        		
-            	var author = response.data.docs[0].author_name;
-    					var titleSheet = response.data.docs[0].title;
-              var isbnSheet = response.data.docs[0].isbn;
-              var yearSheet = response.data.docs[0].publish_year;
-              var loc = "No available location.";
-              var comments = "No comments.";
+                  console.log("resposne", response);   
+                  if (response.data.docs[0] && response.data.docs[0].author_name) {
+                    var author = response.data.docs[0].author_name[0];
+                  };
+
+                  if (response.data.docs[0] && response.data.docs[0].title) {
+                    var titleSheet = response.data.docs[0].title
+                  };
+
+                  // if (response.data.docs[0] && response.data.docs[0].isbn) {
+                  // var isbnSheet = response.data.docs[0].isbn;
+                  // };
+
+                  // if (response.data.docs[0] && response.data.docs[0].publish_year) {
+                  // var yearSheet = response.data.docs[0].publish_year;
+                  // };
+
+                  var loc = "No available location.";              
+                  var comments = "No comments.";
+
+                  var someOtherObj = {};
+
+                  var ratesRef = firebaseBook;
+                  ratesRef.on('value', function (snapshot) {
+                    $timeout(function () {
+                      update(snapshot);
+                      
+                      var snap = snapshot.val();
+                      $scope.snap = snap;
+                    });
+                  });
+
+                function update (snapshot) {
+                  var topObj = $scope.rate; 
+                  $scope.rate = snapshot.val();
+
+                  // for ( var obj in topObj) {
+                  //   // console.log("obj", obj);
+                  //     for ( var key in topObj[obj]) {
+                  //       // console.log("key", key);
+                  //       // console.log("topObj[obj][key]", topObj[obj][key]);
+                  //       var x = topObj[obj][key];
+                  //       // console.log("x", x);
+                  //       //Is this an Obj or an Array
+                  //       if (Array.isArray(x)){
+                  //           var newObj = {};
+                  //           console.log("thing!!!"); 
+                  //         for (var k = 0; k < x.length; k++) {
+                  //           newObj[k] = topObj[obj][key][k];
+                  //           //Set newObj
+                  //           // console.log("newObj", newObj);
+                  //           console.log("newObj[k]", newObj[k]);
+                  //           console.log("obj", obj);
+                  //           console.log("key", key);
+                            
+                  //           var ref = firebaseBook + '/' + obj + '/' + key;
+                  //           console.log("ref", ref);
+                  //           // ref.$add(newObj[k]);
+                  //         }
+                  //       }
+                  //     }
+                  //   } 
+                };
 
 
+          // someBookFireObj.$loaded().then(function() {
+          //  angular.forEach(someBookFireObj, function(value, key) {
+          //    if (value.author[0] === thisBook.authorString){
+          //      if (value.title['title'] === thisBook.titleString){
 
-        			var bookToAddSheets = {
-        				"author": author, 
+              //  // Three-way data binding!!! Author
+              //  objAuthor.$bindTo($scope, "authorString").then(function() {
+              //    firebaseAuthor.$set({ Author: $scope.editBook.authorString });
+              //  });
+          //      };
+          //    };
+          //  });
+          // });
+
+             
+            
+              var bookToAddSheets = {
+                "author": {"author": author}, 
                 "title": {"title": titleSheet},
-                "isbn": isbnSheet,
-                "year": yearSheet,
+                // "isbn": isbnSheet,
+                // "year": yearSheet,
                 "comments": {"comments": comments},
                 "location": {"location": loc}
-        			}
+              }
 
               firebaseBookArray.$add(bookToAddSheets);
               $location.path('/mylibrary').replace();
-
            });
-
+        };
     	};
-	};
+
 }]);

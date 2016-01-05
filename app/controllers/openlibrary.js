@@ -12,6 +12,8 @@ app.controller("openLibraryCtrl",
         var i;
         var booksToDom = [];
         var theVoid = [];
+        var loc = "No available location.";              
+        var comments = "No comments.";
             //Using $http.get to grab information from Open Library
             $http.get(searchUrl)   
                 .then(function (response) {
@@ -20,37 +22,43 @@ app.controller("openLibraryCtrl",
               proofMe = response.data.docs;
               //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
+                var title = proofMe[i]["title"];
                 var idString = proofMe[i].cover_i;
                 //Only strings can use the replace method. Stringify!
-                var image = "http://covers.openlibrary.org/b/id/" + idString + "-S.jpg";
-                var isbnString = proofMe[i]["isbn"];
+                // var image = "http://covers.openlibrary.org/b/id/" + idString + "-S.jpg";
+                var isbnString = JSON.stringify(proofMe[i]["isbn"]);
                 
-                // if (isbnString === undefined){
-                //     theVoid.push(isbnString);
-                //     } else {
-                //     isbnString = isbnString.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
-                //     isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
-                //     };
+                if (isbnString === undefined){
+                    theVoid.push(isbnString);
+                    } else {
+                    isbnString = isbnString.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
+                    isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ', ');
+                    };
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
                 var authorString = JSON.stringify(proofMe[i]["author_name"]);
                 authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
-                authorString = authorString.slice(/[ ]*,[ ]*|[ ]+/g, ' ');
+                // authorString = authorString.slice(/[ ]*,[ ]*|[ ]+/g, ' ');
 
                 var year = JSON.stringify(proofMe[i]["publish_year"]);
-                year = year.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
-                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
-                
+                if (year === undefined){
+                    theVoid.push(year);
+                    } else {
+                        year = year.replace(/[^.,?!()&a-zA-Z0-9 ]/g, "");
+                        year = year.replace(/[ ]*,[ ]*|[ ]+/g, ', ');
+                    }
 
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
-                    author: "Author: " + authorString,
-                    isbn: "ISBN: " + isbnString,
-                    title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + year,
-                    img: image
+                    "author": {"author": authorString},
+                    // isbn: "ISBN: " + isbnString,
+                    "title": {"title": title},
+                    "comments": {"comments": comments},
+                    "location": {"location": loc}
+                    // year: "Years published: " + year,
+                    // img: image
                 };
 
                 console.log("bookToDom", bookToDom);
@@ -67,6 +75,8 @@ app.controller("openLibraryCtrl",
         var i;
         var booksToDom = [];
         var theVoid = [];
+        var loc = "No available location.";              
+        var comments = "No comments.";
             //Using $http.get to grab information from Open Library
             $http.get(searchUrl)   
                 .then(function (response) {
@@ -76,6 +86,7 @@ app.controller("openLibraryCtrl",
 
               //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
+                var title = proofMe[i]["title"];
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = JSON.stringify(proofMe[i]["author_name"]);
@@ -96,16 +107,18 @@ app.controller("openLibraryCtrl",
                     theVoid.push(isbnString);
                     };
 
-                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+                // var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
 
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
-                    author: "Author: " + authorString,
-                    isbn: "ISBN: " + isbnString,
-                    title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + year,
-                    img: image
+                    "author": {"author": authorString},
+                    // isbn: "ISBN: " + isbnString,
+                    "title": {"title": title},
+                    "comments": {"comments": comments},
+                    "location": {"location": loc}
+                    // year: "Years published: " + year,
+                    // img: image
                 };
                 booksToDom.push(bookToDom);
            };
@@ -119,6 +132,9 @@ app.controller("openLibraryCtrl",
         var proofMe;
         var i;
         var booksToDom = [];
+        var loc = "No available location.";              
+        var comments = "No comments.";
+
         //theVoid is full of undefined elements.
         var theVoid = [];
             //Using $http.get to grab information from Open Library
@@ -130,15 +146,29 @@ app.controller("openLibraryCtrl",
 
               //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
+                var title = proofMe[i]["title"];
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = String(proofMe[i]["author_name"]);
 
-                var isbnString = JSON.stringify(proofMe[i]["isbn"]);
-                isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+                var title = proofMe[i]["title"];
 
-                var year = proofMe[i]["publish_year"];
-                year = year.replace(/[ ]*,[ ]*|[ ]+/g, ' ');
+                var isbnString = JSON.stringify(proofMe[i]["isbn"]);
+                if (isbnString === undefined){
+                    theVoid.push(isbnString);
+                } else {
+                    isbnString = isbnString.replace(/[^#%-.?!()&a-zA-Z0-9 ]/g, "");
+                    isbnString = isbnString.replace(/[ ]*,[ ]*|[ ]+/g, ', ');
+                };
+                
+                var year = JSON.stringify(proofMe[i]["publish_year"]);
+                if (year === undefined){
+                    theVoid.push(isbnString);
+                } else {
+                    year = year.replace(/[^#%-.?!()&a-zA-Z0-9 ]/g, "");
+                    year = year.replace(/[ ]*,[ ]*|[ ]+/g, ', ');
+                };
+               
 
                 //Get rid of special symbols etc. Use replace and regular expressions. 
                 //Note to self: Learn more RegEx.
@@ -153,7 +183,7 @@ app.controller("openLibraryCtrl",
                 } else {
                     isbnString = String(isbnString.replace(/[^,.?!()&a-zA-Z0-9 ]/g, ""));
                 };
-                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+                // var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
 
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
@@ -161,8 +191,8 @@ app.controller("openLibraryCtrl",
                     author: "Author: " + authorString,
                     isbn: "ISBN: " + isbnString,
                     title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + year,
-                    img: image
+                    year: "Years published: " + year,
+                    // img: image
                 };
                 booksToDom.push(bookToDom);
            };
@@ -176,6 +206,9 @@ app.controller("openLibraryCtrl",
         var proofMe;
         var i;
         var booksToDom = [];
+        var loc = "No available location.";              
+        var comments = "No comments.";
+
         //theVoid is full of undefined elements.
         var theVoid = [];
             //Using $http.get to grab information from Open Library
@@ -187,6 +220,7 @@ app.controller("openLibraryCtrl",
 
               //Looping over the length of proofMe to check every available title.
               for (i = 0; i < proofMe.length; i++){
+                var title = proofMe[i]["title"];
 
                 //Only strings can use the replace method. Stringify!
                 var authorString = String(proofMe[i]["author_name"]);
@@ -212,16 +246,18 @@ app.controller("openLibraryCtrl",
                     isbnString = String(isbnString.replace(/[^,.?!()&a-zA-Z0-9 ]/g, ""));
                 };
 
-                var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
+                // var image = "http://covers.openlibrary.org/b/isbn/" + isbnString + "-S.jpg";
 
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
-                    author: "Author: " + authorString,
-                    isbn: "ISBN: " + isbnString,
-                    title: "Title: " + proofMe[i]["title"],
-                    year: "Year published: " + year,
-                    img: image
+                    "author": {"author": authorString},
+                    // isbn: "ISBN: " + isbnString,
+                    "title": {"title": title},
+                    "comments": {"comments": comments},
+                    "location": {"location": loc}
+                    // year: "Years published: " + year,
+                    // img: image
                 };
                 booksToDom.push(bookToDom);
            };
@@ -248,7 +284,7 @@ app.controller("openLibraryCtrl",
           author: doc.author,
           // isbn: doc.isbn,
           // publish_year: doc.publish_year,
-          title: doc.title
+          title: doc.title,
         };
         firebaseBookArray.$add(bookToAdd);
     };

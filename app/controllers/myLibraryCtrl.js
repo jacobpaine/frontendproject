@@ -15,38 +15,68 @@ app.controller("myLibraryCtrl",
 
     $scope.goToEdit = function(book){
         editFactory.setBook(book);
+        console.log("Callbook", book);
         $location.path('/edit').replace();
     };
 
     $scope.searchMyLibrary = function(){
-    	var myFullLibrary = [];
+	    var myFullLibrary = [];
 
 	    for (var i = 0; i < firebaseBookArray.length; i++){   
-	   	var authorString = firebaseBookArray[i].author;
-	   	console.log("authorString!!!", authorString);
 
+	   	// $scope.authors = authorString;
+	   
+	   	// console.log("authorString", authorString);
+	   	// console.log("firebaseBookArray[i]", firebaseBookArray[i]);
 
-		angular.forEach(authorString, function(value, key) {
-			console.log("authorString.value", value);
-	    $scope.author = value;
+                //   var ratesRef = firebaseBook;
+                //   ratesRef.on('value', function (snapshot) {
+                //     $timeout(function () {
+                //       update(snapshot);
+                      
+                //   var snap = snapshot.val();
+                //     	$scope.snap = book;
+                //     });
+                //   });
 
+                // function update (snapshot) {
+                //   var topObj = $scope.rate; 
+                //   $scope.rate = snapshot.val();
+       //          var library = [];
 
-		});
 
     			var book = {
-	    			// title: $scope.titleString = firebaseBookArray[i].title,
-	    			// // isbn: $scope.isbnString = firebaseBookArray[i].isbn
+    				author: $scope.authorString = firebaseBookArray[i].author,
+	    			title: $scope.titleString = firebaseBookArray[i].title,
+	    			// isbn: $scope.isbnString = firebaseBookArray[i].isbn,
 	    			// year:  $scope.year = firebaseBookArray[i].year,
-	    			// comments: $scope.comments = firebaseBookArray[i].comments,
-	    			// location: $scope.location = firebaseBookArray[i].location
+	    			comments: $scope.comments = firebaseBookArray[i].comments,
+	    			location: $scope.location = firebaseBookArray[i].location,
+	    			id: $scope.identify = firebaseBookArray[i].$id
     				}
 
-	   			$scope.book = book;
-    			};	
-	   		$scope.arrayToString = function(string){
-        		return string.join(", ");
-    		};
-	   		}
+    				// var authorString = firebaseBookArray[i].author,
+    				// var titleString = firebaseBookArray[i].title,
+    				// var comments = firebaseBookArray[i].comments,
+    				// var location = firebaseBookArray[i].loc
+    				// console.log("authorString", authorString);
+        			myFullLibrary.push(book);
+    				$scope.myFullLibrary = myFullLibrary;
+    	}
+		      //   	var base = firebaseBookArray[i];
+		      //   		console.log("base", base);
+	
+
+    				// console.log("book", book);
+			   		// library.push({book});
+			   		// console.log("library", library);
+    				// $scope.library = book;
+    			// };	
+	   		// $scope.arrayToString = function(string){
+         	//	return string.join(", ");
+    		// };
+	}
+
 				// authorString = authorString.replace(/[^.?!()&a-zA-Z0-9 ]/g, "");
 
 				// console.log("authorString", authorString);
@@ -79,20 +109,20 @@ app.controller("myLibraryCtrl",
     	
 
 // Fire searchMyLibrary on page load.
-	// $timeout($scope.searchMyLibrary)
+	$timeout($scope.searchMyLibrary)
 /////////////////////////////////////
 
-    $scope.removeBook = function(){
-        console.log("removedoc", this.book);
+    $scope.removeBook = function(doc){
         var i;
         for (i = 0; i < firebaseBookArray.length; i++){
-            if (firebaseBookArray[i].title === this.book.titleString && this.book.authorString){
+            if (firebaseBookArray[i].title === this.book.title){
+           		if (firebaseBookArray[i].author === this.book.author){
                 firebaseBookArray.$remove(firebaseBookArray[i]);
-                //Immediately reload search after a removal.
+          //       //Immediately reload search after a removal.
         		$timeout($scope.searchMyLibrary)
 
-            }
-
+            	}
+        	}
         };
-    };
+    }
 }]);
