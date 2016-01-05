@@ -1,49 +1,48 @@
 <html lang="en">
     <head>
     </head>
-
-        
+ 
     <body>
-    <h2>OPEN LIBRARY TEST</h2>
-       <div ng-app="LibraryApp" ng-controller="openLibraryCtrl">
-            
-            <div>
-                <input type="text" ng-model="author">
-                <button ng-click="searchAuthor()">Search Author</button>
-            </div>
+        <div class="startBox">
+            <h2>Search the Open Library</h2>
+           <div ng-app="LibraryApp" ng-controller="openLibraryCtrl">
+                <div>  
+                    <div class="startSearchButton">
+                        <input type="text" ng-model="title">
+                        <button class="btn-default" ng-click="searchTitle()">Search Title</button>
+                    </div>
+                    <div class="startAuthorButton">
+                        <input type="text" ng-model="author">
+                        <button class="btn-default" ng-click="searchAuthor()">Search Author</button>
+                    </div>
 
-            <div>
-                <input type="text" ng-model="isbn">
-                <button ng-click="searchIsbn()">Search Isbn</button>
-            </div>
+                    <div class="startIsbnButton">
+                        <input type="text" ng-model="isbn">
+                        <button class="btn-default" ng-click="searchIsbn()">Search Isbn</button>
+                    </div>
 
-            <div>
-                <input type="text" ng-model="title">
-                <button ng-click="searchTitle()">Search Title</button>
-            </div>
 
-            <div>
-            	<button ng-click="clearPage()">Clear</button>
-            </div>
+                    <div>
+                    	<button class="btn-default" ng-click="clearPage()">Clear</button>
+                    </div>
 
-	        <button ng-click="toMyLibrary()">My Library</button>
-            <button ng-click="manualAdd()">Manual Addition</button>
+        	        <button class="btn-default toLibraryButton" ng-click="toMyLibrary()">Personal Library</button>
+                    <button class="btn-default manualButton" ng-click="manualAdd()">Manual Addition</button>
 
-            <p>  
-                <ul ng-repeat="doc in docs track by $index">
-                    <p>{{ doc.author }}</p>
-                    <p>{{ doc.title }}</p>
-                    <p>{{ doc.isbn }}</p>
-                    <p>{{ doc.year }}</p>
-                    <!-- <img src="{{ doc.img }}"> -->
-                    <!-- Add Remove Buttons passing in selected book from DOM -->
-                    <button ng-click="addBook(doc)">Add this Book to your Library</button>
-                    <hr>
-                </ul>
-                    </div>    
-                </li>
-            </p>
-
+                    <label>Search: <input ng-model="searchText"></label>
+                    <div class="col-md-12">
+                        <ul class="col-md-3 startBook" ng-repeat="doc in docs| limitTo:-50 |filter:searchText track by $index">
+                            <p class="startTitle">{{ doc.title.title }}</p>
+                            <p class="startAuthor">{{ doc.author.author }}</p>
+                            <p class="startIsbn">{{ doc.isbn }}</p>
+                            <p class="startYear">{{ doc.year }}</p>
+                            <!-- <img src="{{ doc.img }}"> -->
+                            <!-- Add Remove Buttons passing in selected book from DOM -->
+                            <button class="btn-default" ng-click="addBook(doc)">Add this Book to your Library</button>
+                        </ul>
+                    </div>
+                </div>
+            </div>    
         </div>
 
     </body>

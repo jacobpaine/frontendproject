@@ -1,6 +1,6 @@
 app.controller("openLibraryCtrl",
-    ["$scope", "$http", "$firebaseArray", "$location", "$timeout",
-    function($scope, $http, $firebaseArray, $location, $timeout) {
+    ["$scope", "$http", "$firebaseArray", "$location", "$timeout", "$log",
+    function($scope, $http, $firebaseArray, $location, $timeout, $log) {
 
     var firebaseBook = new Firebase("https://library-of-paine.firebaseio.com/books/");
     var firebaseBookArray = $firebaseArray(firebaseBook);
@@ -53,11 +53,11 @@ app.controller("openLibraryCtrl",
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     "author": {"author": authorString},
-                    // isbn: "ISBN: " + isbnString,
+                    isbn: "ISBN: " + isbnString,
                     "title": {"title": title},
                     "comments": {"comments": comments},
-                    "location": {"location": loc}
-                    // year: "Years published: " + year,
+                    "location": {"location": loc},
+                    year: "Years published: " + year,
                     // img: image
                 };
 
@@ -113,11 +113,11 @@ app.controller("openLibraryCtrl",
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     "author": {"author": authorString},
-                    // isbn: "ISBN: " + isbnString,
+                    isbn: "ISBN: " + isbnString,
                     "title": {"title": title},
                     "comments": {"comments": comments},
-                    "location": {"location": loc}
-                    // year: "Years published: " + year,
+                    "location": {"location": loc},
+                    year: "Years published: " + year,
                     // img: image
                 };
                 booksToDom.push(bookToDom);
@@ -154,6 +154,9 @@ app.controller("openLibraryCtrl",
                 var title = proofMe[i]["title"];
 
                 var isbnString = JSON.stringify(proofMe[i]["isbn"]);
+                
+                console.log("isbnString", isbnString);
+
                 if (isbnString === undefined){
                     theVoid.push(isbnString);
                 } else {
@@ -188,10 +191,12 @@ app.controller("openLibraryCtrl",
                 //The information for each individual book is held in bookToDom obj.
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
-                    author: "Author: " + authorString,
+                    "author": {"author": authorString},
                     isbn: "ISBN: " + isbnString,
-                    title: "Title: " + proofMe[i]["title"],
-                    year: "Years published: " + year,
+                    "title": {"title": title},
+                    "comments": {"comments": comments},
+                    "location": {"location": loc},
+                    year: "Years published: " + year
                     // img: image
                 };
                 booksToDom.push(bookToDom);
@@ -252,11 +257,11 @@ app.controller("openLibraryCtrl",
                 // console.log("isbnString", isbnString);
                 var bookToDom = {    
                     "author": {"author": authorString},
-                    // isbn: "ISBN: " + isbnString,
+                    isbn: "ISBN: " + isbnString,
                     "title": {"title": title},
                     "comments": {"comments": comments},
-                    "location": {"location": loc}
-                    // year: "Years published: " + year,
+                    "location": {"location": loc},
+                    year: "Years published: " + year
                     // img: image
                 };
                 booksToDom.push(bookToDom);
@@ -282,11 +287,34 @@ app.controller("openLibraryCtrl",
         console.log("doc", doc);
         var bookToAdd = {    
           author: doc.author,
-          // isbn: doc.isbn,
+          isbn: doc.isbn,
           // publish_year: doc.publish_year,
           title: doc.title,
         };
         firebaseBookArray.$add(bookToAdd);
     };
+
+
+  $scope.items = [
+    'The first choice!',
+    'And another choice for you.',
+    'but wait! A third!'
+  ];
+
+  $scope.status = {
+    isopen: false
+  };
+
+  $scope.toggled = function(open) {
+    $log.log('Dropdown is now: ', open);
+  };
+
+  $scope.toggleDropdown = function($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    $scope.status.isopen = !$scope.status.isopen;
+  };
+
+
 
 }]);

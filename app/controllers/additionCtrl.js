@@ -34,19 +34,15 @@ app.controller("additionCtrl",
 
           };
 
-          $location.path('/mylibrary').replace();
-
-
-
-
         console.log("bookToAddMan", bookToAddMan);
         firebaseBookArray.$add(bookToAddMan);
+        $location.path('/mylibrary').replace();
     };
 
 
 //Controller code for getting from Google Sheets
 // Retrieve id (~7 digits e.g. ocwf700) from https://spreadsheets.google.com/feeds/worksheets/YOUR_SPREADSHEET_ID/private/full
-    var url = 'https://spreadsheets.google.com/feeds/list/1U9JXkQ5ZDCXTTNvFZlcr9yc8-ehOc_PbF4o-b2IiEYg/ocwf700/public/values?alt=json'
+    var url = 'https://spreadsheets.google.com/feeds/list/1U7odqp5eoGxOlY7hO89ZA1FNxWu_CelUj-DhaIh-70k/ois09v3/public/values?alt=json'
     var parse = function(entry) {
       console.log(entry);
       
@@ -78,7 +74,6 @@ app.controller("additionCtrl",
     		var searchUrl = 'http://openlibrary.org/search?q=' + json[i];
             $http.get(searchUrl)   
                 .then(function (response) {
-                  console.log("resposne", response);   
                   if (response.data.docs[0] && response.data.docs[0].author_name) {
                     var author = response.data.docs[0].author_name[0];
                   };
@@ -87,15 +82,15 @@ app.controller("additionCtrl",
                     var titleSheet = response.data.docs[0].title
                   };
 
-                  // if (response.data.docs[0] && response.data.docs[0].isbn) {
-                  // var isbnSheet = response.data.docs[0].isbn;
-                  // };
+                  if (response.data.docs[0] && response.data.docs[0].isbn) {
+                  var isbnSheet = response.data.docs[0].isbn;
+                  };
 
                   // if (response.data.docs[0] && response.data.docs[0].publish_year) {
                   // var yearSheet = response.data.docs[0].publish_year;
                   // };
 
-                  var loc = "No available location.";              
+                  var location = "No available location.";              
                   var comments = "No comments.";
 
                   var someOtherObj = {};
@@ -162,10 +157,10 @@ app.controller("additionCtrl",
               var bookToAddSheets = {
                 "author": {"author": author}, 
                 "title": {"title": titleSheet},
-                // "isbn": isbnSheet,
+                "isbn": isbnSheet,
                 // "year": yearSheet,
                 "comments": {"comments": comments},
-                "location": {"location": loc}
+                "location": {"location": location}
               }
 
               firebaseBookArray.$add(bookToAddSheets);

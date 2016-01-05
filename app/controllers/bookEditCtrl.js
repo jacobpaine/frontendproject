@@ -57,7 +57,7 @@ app.controller("bookEditCtrl",
 				// var firebaseIsbn = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/isbn/"); 
 				// var firebaseYear = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/year/"); 
 				var firebaseComments = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/comments/"); 
-				var firebaseLoc = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/loc/"); 
+				var firebaseLoc = new Firebase("https://library-of-paine.firebaseio.com/books/" + arrayId + "/location/"); 
             	
 				var someBookFireObj = $firebaseObject(someBook);
 				var objAuthor = $firebaseObject(firebaseAuthor);
@@ -86,7 +86,7 @@ app.controller("bookEditCtrl",
 								firebaseAuthor.set({ author: $scope.editBook.authorString });
 							  	firebaseTitle.set({ title: $scope.editBook.titleString }); 
 								firebaseComments.set({ comments: $scope.editBook.comments }); 
-								firebaseLoc.set({ loc: $scope.editBook.loc });
+								firebaseLoc.set({ location: $scope.editBook.loc });
 							// obj.$bindTo($scope, "author").then(function() {
 							// 	$scope.editBook.authorString = "baz"; 
 							// });

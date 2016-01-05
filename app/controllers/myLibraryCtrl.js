@@ -21,7 +21,7 @@ app.controller("myLibraryCtrl",
 
     $scope.searchMyLibrary = function(){
 	    var myFullLibrary = [];
-
+	    var theVoid = [];
 	    for (var i = 0; i < firebaseBookArray.length; i++){   
 
 	   	// $scope.authors = authorString;
@@ -43,7 +43,17 @@ app.controller("myLibraryCtrl",
                 //   var topObj = $scope.rate; 
                 //   $scope.rate = snapshot.val();
        //          var library = [];
+               //  var isbnThing = firebaseBookArray[i].isbn[0];
 
+               //  var image = "http://covers.openlibrary.org/b/isbn/" + firebaseBookArray[i].isbn[0] + "-M.jpg";
+               // 	console.log("image", image);
+               // 	if( var image = "http://covers.openlibrary.org/b/isbn/" + firebaseBookArray[i].isbn[0] + "-M.jpg"){
+               // 		return image;
+               // 		} else {
+               // 			theVoid.push(image);
+               // 		}
+              	// console.log("image", image);
+               //  $scope.image = image
 
     			var book = {
     				author: $scope.authorString = firebaseBookArray[i].author,
@@ -52,7 +62,8 @@ app.controller("myLibraryCtrl",
 	    			// year:  $scope.year = firebaseBookArray[i].year,
 	    			comments: $scope.comments = firebaseBookArray[i].comments,
 	    			location: $scope.location = firebaseBookArray[i].location,
-	    			id: $scope.identify = firebaseBookArray[i].$id
+	    			id: $scope.identify = firebaseBookArray[i].$id,
+	    			// image: $scope.image = image
     				}
 
     				// var authorString = firebaseBookArray[i].author,
@@ -112,6 +123,10 @@ app.controller("myLibraryCtrl",
 	$timeout($scope.searchMyLibrary)
 /////////////////////////////////////
 
+
+
+
+//////////////////////////////////
     $scope.removeBook = function(doc){
         var i;
         for (i = 0; i < firebaseBookArray.length; i++){

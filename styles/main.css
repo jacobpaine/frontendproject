@@ -1,42 +1,160 @@
-body {
-  font: 100% Helvetica, sans-serif;
-  color: #333; }
+.additionsButton{
 
-#loginContent {
-  text-align: center; }
+}
 
-#loginInput {
-  padding-top: 10px; }
+.inputCardBox{
+    border: 2px solid black;
+  width: 60%;
+  padding: 3px;
+  margin: 5px;
+}
 
-#passwordInput {
-  padding-top: 5px; }
 
-#loginButtons {
-  padding-top: 10px; }
+.editNow{
+    border: 2px solid black;
+    width: 60%;
+    margin: 5px;
+}
 
-#loginButton {
-  color: #333; }
+.editNowHead{
+    font-weight: bold;
+    padding: 3px;
+    margin: 5px;
+}
 
-#signupButton {
-  color: #333; }
+.editForm{
+  border: 2px solid black;
+  width: 60%;
+  padding: 3px;
+  margin: 5px;
 
-/**********************************
-MEDIA QUERIES
-**********************************/
-@media (min-width: 800px) {
-  #columns {
-    -webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3; } }
-@media (min-width: 1060px) {
-  #columns {
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4; } }
-@media (min-width: 1320px) {
-  #columns {
-    -webkit-column-count: 5;
-    -moz-column-count: 5;
-    column-count: 5; } }
+}
 
-/*# sourceMappingURL=main.css.map */
+.editButtonBox{
+    margin: auto;
+}
+
+.editAuthor{
+    font-weight: bold;
+        margin: auto;
+}
+.editTitle{
+    font-weight: bold;
+    margin: auto;
+}
+.editComments{
+    font-weight: bold;
+    margin: auto;
+}
+.editLocation{
+    font-weight: bold;
+    margin: auto;
+}
+
+.searchOpen{
+
+}
+
+.startBox{
+    border: 2px solid black;
+    margin: auto;
+    width: 60%;
+/*    background-color: red;*/
+}
+
+.startBook{
+  border: 2px solid black;
+  margin: 3px;
+  padding: 8px;
+  height: 55%;
+  width: 25%;
+  overflow: hidden;
+}
+
+.startTitle{
+  font-weight: bold;
+}
+
+.startAuthor{
+  font-style: oblique;
+}
+.startIsbn{
+  font-size: 12px;
+}
+.startYear{}
+
+.startSearchButton{
+  margin: 2px;
+
+}
+
+.startAuthorButton{
+  margin: 2px;
+
+}
+
+.startIsbnButton{
+  margin: 2px;
+
+}
+
+.toLibraryButton{
+    margin: 2px;
+}
+
+.manualButton{
+    margin: 2px;
+}
+
+.myLibBox{
+  padding:10px;
+}
+
+.searchBook{
+  font-size: 25px;
+  padding: 8px;
+}
+
+.bookBox{
+  margin: 2px;
+  border: 2px solid black;
+  padding: 8px;
+  height: 30%;
+  width: 25%;
+  overflow: hidden;
+}
+
+.bookImage{
+}
+
+.bookTitle {
+  font-weight: bold;
+}
+
+.bookAuthor {
+
+}
+
+.removeButton{
+
+}
+
+.editForm{
+  border: 2px solid black;
+}
+
+.editAuthor{
+
+}
+
+.editTitle{
+
+}
+
+.editComments{
+
+}
+
+.editLocation{
+
+}

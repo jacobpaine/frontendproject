@@ -1,13 +1,12 @@
-<div>Edit Page</div>
 <div ng-app="LibraryApp" ng-controller="bookEditCtrl">
 
   <div ng-init="getBook()">
-  <div>
-    <div>Author</div>
+  <div class="editNow">
+    <div class="editNowHead">Author:</div>
         <div ng-repeat="item in book">
           <div>{{ item.author }}</div>
         </div>  
-    <div>Title</div>
+    <div class="editNowHead">Title:</div>
         <div ng-repeat="item in book">
           <div>{{ item.title }}</div>
         </div>  
@@ -15,24 +14,24 @@
  --><!--         <div>{{ book.isbn }}</div>
     <div>Year Published</div>
         <div>{{ book.year }}</div> -->
-    <div>Comments</div>
+    <div class="editNowHead">Comments:</div>
         <div ng-repeat="item in book">
           <div>{{ item.comments }}</div>
         </div> 
-    <div>Location</div>
+    <div class="editNowHead">Location:</div>
         <div ng-repeat="item in book">
           <div>{{ item.location }}</div>
         </div> 
   </div>
 
 
-<form name="myForm">
-  <div>Author</div>
+<form name="myForm" class="editForm">
+  <div class="editAuthor">Author</div>
       <input type="text" ng-model="editBook.authorString" placeholder="{{book.author.author}}" ng-required="!(editBook.author.length || editBook.title.length)">
         <div>{{ editBook.author }}</div>
   
-  <div>Title</div>
-      <input type="text" ng-model="editBook.titleString" placeholder="{{book.title.title}}" ng-required="!(editBook.author.length || editBook.title.length)">
+  <div class="editTitle">Title</div>
+      <input type="text" ng-model="editBook.titleString" value = "{{editBook.titleString}}" placeholder="{{book.title.title}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.title }}</div>
   
 <!--   <div>ISBN</div>
@@ -43,19 +42,19 @@
       <input type="text" ng-model="editBook.year" placeholder="{{book.year}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.year }}</div> -->
   
-  <div>Comments</div>
+  <div class="editComments">Comments</div>
       <input type="text" ng-model="editBook.comments" placeholder="{{book.comments.comments}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.comments }}</div>
   
-  <div>Location</div>
+  <div class="editLocation">Location</div>
       <input type="text" ng-model="editBook.loc" placeholder="{{book.location.location}}" ng-required="!(editBook.author.length || editBook.title.length)">
       <div>{{ editBook.loc }}</div>
 
-    <button ng-click="updateBook(book)" ng-disabled="!myForm.$valid">Update this Book</button>
+    <button class="btn-default" ng-click="updateBook(book)" ng-disabled="!myForm.$valid">Update this Book</button>
 </form>
 
-  <button ng-click="toMyLibrary()">My Library</button>
-  <button ng-click="toOpenLibrary()">To Open Library</button>
+  <button class="btn-default editButtonBox" ng-click="toMyLibrary()">My Library</button>
+  <button class="btn-default editButtonBox" ng-click="toOpenLibrary()">To Open Library</button>
 
 </div>
 
